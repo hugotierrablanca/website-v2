@@ -106,6 +106,20 @@
       yearActiveTrack.style.left = `${leftPct}%`;
       yearActiveTrack.style.width = `${Math.max(0, rightPct - leftPct)}%`;
     }
+
+    // When both thumbs overlap, keep the handle that can expand the range on top.
+    if (minValue === maxValue) {
+      if (minValue <= rangeFloor) {
+        yearRangeMin.style.zIndex = "1";
+        yearRangeMax.style.zIndex = "2";
+      } else {
+        yearRangeMin.style.zIndex = "2";
+        yearRangeMax.style.zIndex = "1";
+      }
+    } else {
+      yearRangeMin.style.zIndex = "2";
+      yearRangeMax.style.zIndex = "1";
+    }
   }
 
   function filteredPublications() {
