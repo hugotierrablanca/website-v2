@@ -4,34 +4,38 @@
 }
 
 :root {
-  --lightest-accent: #eef8ff;
-  --light-accent: #c8e7ff;
-  --light-med-accent: #97d2ff;
-  --med-accent: #63b3ff;
-  --accent: #2f80ed;
+  --lightest-accent: #f5faff;
+  --light-accent: #dceaff;
+  --light-med-accent: #98bcff;
+  --med-accent: #3f79de;
+  --accent: #224eaa;
 
-  --lightest-accent2: #ecf7ff;
-  --light-accent2: #bfe8ff;
-  --light-med-accent2: #7fd0ff;
-  --med-accent2: #3db6ff;
-  --accent2: #0b98e6;
+  --lightest-accent2: #f1f8ff;
+  --light-accent2: #d5e9ff;
+  --light-med-accent2: #95c8ff;
+  --med-accent2: #3f90df;
+  --accent2: #266fbe;
 
-  --lightest-accent3: #eaf3ff;
-  --light-accent3: #c8dfff;
-  --light-med-accent3: #98c0ff;
-  --med-accent3: #679df6;
-  --accent3: #3d74d9;
+  --lightest-accent3: #f4f7ff;
+  --light-accent3: #dbe6ff;
+  --light-med-accent3: #9cb7ff;
+  --med-accent3: #5f86ea;
+  --accent3: #385dc7;
 
-  --light-accent4: #dff4ff;
-  --light-med-accent4: #b9e7ff;
-  --med-accent4: #70c8f5;
-  --accent4: #2f9dd8;
+  --light-accent4: #eef6ff;
+  --light-med-accent4: #cadeff;
+  --med-accent4: #78afe7;
+  --accent4: #457fd1;
 
-  --light-gray: #f3f8fd;
-  --gray: #d4e0ec;
-  --med-gray: #5d7390;
-  --dark-gray: #324a67;
-  --black: #0f2038;
+  --blue-gradient-dark: #0d2f77;
+  --blue-gradient-mid: #2364d2;
+  --blue-gradient-light: #82d6ff;
+
+  --light-gray: #f7f8fb;
+  --gray: #d6dce5;
+  --med-gray: #5a6c85;
+  --dark-gray: #314a6a;
+  --black: #12243d;
 }
 
 * {
@@ -47,10 +51,7 @@ body {
   font-family: "Inconsolata", "SFMono-Regular", Menlo, monospace;
   color: var(--black);
   line-height: 1.55;
-  background:
-    radial-gradient(circle at 12% 18%, rgba(47, 157, 216, 0.15), transparent 42%),
-    radial-gradient(circle at 82% 6%, rgba(47, 128, 237, 0.15), transparent 38%),
-    linear-gradient(160deg, #f5fbff 0%, #edf7ff 38%, #e8f4ff 100%);
+  background: #ffffff;
   overflow-x: hidden;
 }
 
@@ -71,7 +72,7 @@ h6 {
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.82;
+  opacity: 0.56;
 }
 
 p {
@@ -114,14 +115,14 @@ a:hover {
 }
 
 .grad1 {
-  background: -webkit-linear-gradient(45deg, var(--accent3), var(--accent));
+  background: -webkit-linear-gradient(45deg, var(--blue-gradient-dark), var(--blue-gradient-light));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .grad2 {
-  background: -webkit-linear-gradient(45deg, var(--accent), var(--accent3));
+  background: -webkit-linear-gradient(45deg, var(--blue-gradient-light), var(--blue-gradient-dark));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -148,7 +149,7 @@ a:hover {
   top: 0;
   z-index: 20;
   width: 100%;
-  background: rgba(245, 251, 255, 0.7);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(10px);
   padding: 1rem;
   text-transform: lowercase;
@@ -159,7 +160,7 @@ a:hover {
   position: absolute;
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, var(--light-med-accent2), var(--light-med-accent3));
+  background: linear-gradient(90deg, var(--blue-gradient-dark), var(--blue-gradient-light));
   bottom: 0;
   left: 0;
 }
@@ -278,7 +279,7 @@ section h2::before {
   position: absolute;
   width: 2.5em;
   height: 0.5rem;
-  background-color: var(--accent);
+  background: linear-gradient(90deg, var(--blue-gradient-dark), var(--blue-gradient-light));
   top: -1.5rem;
 }
 
@@ -386,7 +387,7 @@ section h2::before {
 }
 
 .placeholder {
-  background: linear-gradient(135deg, var(--light-accent), var(--light-accent2));
+  background: linear-gradient(135deg, rgba(13, 47, 119, 0.18), rgba(130, 214, 255, 0.34));
 }
 
 .pub-inner {
@@ -610,7 +611,7 @@ section h2::before {
   border: 2px solid transparent;
   background:
     linear-gradient(transparent, transparent) padding-box,
-    linear-gradient(-45deg, var(--med-accent), var(--med-accent3)) border-box;
+    linear-gradient(-45deg, var(--blue-gradient-dark), var(--blue-gradient-light)) border-box;
   border-radius: 100%;
 }
 
