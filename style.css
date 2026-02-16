@@ -4,34 +4,34 @@
 }
 
 :root {
-  --lightest-accent: #fdf5fc;
-  --light-accent: #debcd6;
-  --light-med-accent: #cb97be;
-  --med-accent: #ba79aa;
-  --accent: #984b85;
+  --lightest-accent: #eef8ff;
+  --light-accent: #c8e7ff;
+  --light-med-accent: #97d2ff;
+  --med-accent: #63b3ff;
+  --accent: #2f80ed;
 
-  --lightest-accent2: #dfe2f3;
-  --light-accent2: #bec2df;
-  --light-med-accent2: #9ba0c9;
-  --med-accent2: #6a70ad;
-  --accent2: #505794;
+  --lightest-accent2: #ecf7ff;
+  --light-accent2: #bfe8ff;
+  --light-med-accent2: #7fd0ff;
+  --med-accent2: #3db6ff;
+  --accent2: #0b98e6;
 
-  --lightest-accent3: #fff1e6;
-  --light-accent3: #eec3ad;
-  --light-med-accent3: #e2a482;
-  --med-accent3: #d27745;
-  --accent3: #b85c2a;
+  --lightest-accent3: #eaf3ff;
+  --light-accent3: #c8dfff;
+  --light-med-accent3: #98c0ff;
+  --med-accent3: #679df6;
+  --accent3: #3d74d9;
 
-  --light-accent4: #d6e9f9;
-  --light-med-accent4: #b0cfeb;
-  --med-accent4: #649dd0;
-  --accent4: #2f75b0;
+  --light-accent4: #dff4ff;
+  --light-med-accent4: #b9e7ff;
+  --med-accent4: #70c8f5;
+  --accent4: #2f9dd8;
 
-  --light-gray: #f7f7f7;
-  --gray: #dddddd;
-  --med-gray: #8b8b8b;
-  --dark-gray: #5b5b5b;
-  --black: #242424;
+  --light-gray: #f3f8fd;
+  --gray: #d4e0ec;
+  --med-gray: #5d7390;
+  --dark-gray: #324a67;
+  --black: #0f2038;
 }
 
 * {
@@ -44,9 +44,14 @@ html {
 
 body {
   margin: 0;
-  font-family: "Nunito Sans", "Noto Sans", sans-serif;
+  font-family: "Inconsolata", "SFMono-Regular", Menlo, monospace;
   color: var(--black);
   line-height: 1.55;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(47, 157, 216, 0.15), transparent 42%),
+    radial-gradient(circle at 82% 6%, rgba(47, 128, 237, 0.15), transparent 38%),
+    linear-gradient(160deg, #f5fbff 0%, #edf7ff 38%, #e8f4ff 100%);
+  overflow-x: hidden;
 }
 
 h1,
@@ -56,7 +61,17 @@ h4,
 h5,
 h6 {
   margin: 0;
-  font-family: "Noto Sans", sans-serif;
+  font-family: "Inconsolata", "SFMono-Regular", Menlo, monospace;
+}
+
+#neural-network-bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.82;
 }
 
 p {
@@ -78,6 +93,7 @@ a {
 }
 
 a:hover {
+  color: var(--accent3);
   opacity: 0.8;
 }
 
@@ -123,15 +139,17 @@ a:hover {
   max-width: 1200px;
   margin: 0 auto;
   padding: 5.2rem 2rem 2rem;
+  position: relative;
+  z-index: 10;
 }
 
 #nav {
   position: fixed;
   top: 0;
-  z-index: 9999;
+  z-index: 20;
   width: 100%;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(6px);
+  background: rgba(245, 251, 255, 0.7);
+  backdrop-filter: blur(10px);
   padding: 1rem;
   text-transform: lowercase;
 }
@@ -141,7 +159,7 @@ a:hover {
   position: absolute;
   width: 100%;
   height: 1px;
-  background: linear-gradient(-45deg, var(--light-accent3), var(--light-accent));
+  background: linear-gradient(90deg, var(--light-med-accent2), var(--light-med-accent3));
   bottom: 0;
   left: 0;
 }
@@ -178,7 +196,7 @@ a:hover {
 }
 
 #prof-pic-contain {
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 14px 38px rgba(27, 68, 117, 0.22);
   transition: 0.3s;
   border-radius: 0.5rem;
   overflow: hidden;
@@ -347,12 +365,13 @@ section h2::before {
   font-size: smaller;
   border: 1px solid var(--gray);
   transition: 0.3s;
-  background: white;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(2px);
 }
 
 .pub:hover {
   transform: scale(1.02);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 25px rgba(30, 86, 153, 0.16);
 }
 
 .pub .top-section {
@@ -522,9 +541,10 @@ section h2::before {
 }
 
 #fun-cards .fun-card {
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 25px rgba(30, 86, 153, 0.2);
   transition: 0.3s;
   overflow: hidden;
+  background: rgba(255, 255, 255, 0.7);
 }
 
 #fun-cards .fun-card:hover {
@@ -548,7 +568,7 @@ section h2::before {
   position: absolute;
   top: 0;
   left: 0;
-  background: linear-gradient(rgba(152, 75, 133, 0.7), rgba(80, 87, 148, 0.7));
+  background: linear-gradient(rgba(13, 152, 230, 0.72), rgba(47, 128, 237, 0.72));
   color: white;
   display: flex;
   align-items: center;
@@ -560,11 +580,11 @@ section h2::before {
 }
 
 #fun-cards .overlay.blue {
-  background: linear-gradient(rgba(80, 87, 148, 0.7), rgba(47, 117, 176, 0.7));
+  background: linear-gradient(rgba(61, 116, 217, 0.72), rgba(47, 157, 216, 0.72));
 }
 
 #fun-cards .overlay.orange {
-  background: linear-gradient(rgba(184, 92, 42, 0.7), rgba(152, 75, 133, 0.7));
+  background: linear-gradient(rgba(47, 157, 216, 0.72), rgba(103, 157, 246, 0.72));
 }
 
 #fun-cards .fun-card a:hover .overlay {

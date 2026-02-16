@@ -174,7 +174,224 @@
     renderNews();
   }
 
+  function initNeuralNetworkBackground() {
+    const canvas = document.getElementById("neural-network-bg");
+    if (!canvas) {
+      return;
+    }
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) {
+      return;
+    }
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const nodes = [];
+    const edges = [];
+    const pulses = [];
+
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let maxLinkDistance = 150;
+    let scrollEnergy = 0;
+    let lastFrameTime = performance.now();
+
+    function computeNodeCount() {
+      const area = window.innerWidth * window.innerHeight;
+      return Math.max(26, Math.min(70, Math.floor(area / 22000)));
+    }
+
+    function resetNodes(count) {
+      nodes.length = 0;
+      for (let i = 0; i < count; i += 1) {
+        nodes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.42,
+          vy: (Math.random() - 0.5) * 0.42,
+          r: 1.4 + Math.random() * 1.6,
+          wobble: Math.random() * Math.PI * 2,
+        });
+      }
+    }
+
+    function resizeCanvas() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+
+      maxLinkDistance = Math.max(95, Math.min(185, width * 0.12 + height * 0.025));
+      resetNodes(computeNodeCount());
+    }
+
+    function updateNodes(frameScale) {
+      const speedScale = 1 + scrollEnergy * 0.22;
+
+      for (const node of nodes) {
+        node.x += node.vx * frameScale * speedScale;
+        node.y += node.vy * frameScale * speedScale;
+        node.wobble += frameScale * 0.025;
+
+        if (node.x < 0 || node.x > width) {
+          node.vx *= -1;
+          node.x = Math.max(0, Math.min(width, node.x));
+        }
+        if (node.y < 0 || node.y > height) {
+          node.vy *= -1;
+          node.y = Math.max(0, Math.min(height, node.y));
+        }
+      }
+
+      scrollEnergy = Math.max(0, scrollEnergy * 0.94 - 0.0015);
+    }
+
+    function collectEdges() {
+      edges.length = 0;
+      const threshold = maxLinkDistance * maxLinkDistance;
+
+      for (let i = 0; i < nodes.length; i += 1) {
+        const nodeA = nodes[i];
+        for (let j = i + 1; j < nodes.length; j += 1) {
+          const nodeB = nodes[j];
+          const dx = nodeA.x - nodeB.x;
+          const dy = nodeA.y - nodeB.y;
+          const distSq = dx * dx + dy * dy;
+          if (distSq < threshold) {
+            edges.push({
+              a: i,
+              b: j,
+              dist: Math.sqrt(distSq),
+            });
+          }
+        }
+      }
+    }
+
+    function spawnPulses(frameScale) {
+      if (edges.length === 0) {
+        return;
+      }
+
+      const spawnChance = 0.04 + scrollEnergy * 0.03;
+      const attempts = Math.max(1, Math.ceil(frameScale));
+
+      for (let i = 0; i < attempts; i += 1) {
+        if (pulses.length >= 26 || Math.random() > spawnChance) {
+          continue;
+        }
+
+        const edge = edges[Math.floor(Math.random() * edges.length)];
+        if (!edge) {
+          continue;
+        }
+
+        const reverse = Math.random() < 0.5;
+        pulses.push({
+          a: reverse ? edge.b : edge.a,
+          b: reverse ? edge.a : edge.b,
+          t: 0,
+          speed: 0.006 + Math.random() * 0.007 + scrollEnergy * 0.002,
+          radius: 1.4 + Math.random() * 1.4,
+        });
+      }
+    }
+
+    function draw(frameScale) {
+      ctx.clearRect(0, 0, width, height);
+      collectEdges();
+
+      for (const edge of edges) {
+        const nodeA = nodes[edge.a];
+        const nodeB = nodes[edge.b];
+        const distFactor = 1 - edge.dist / maxLinkDistance;
+        const alpha = Math.max(0.03, distFactor * (0.22 + scrollEnergy * 0.12));
+
+        ctx.beginPath();
+        ctx.moveTo(nodeA.x, nodeA.y);
+        ctx.lineTo(nodeB.x, nodeB.y);
+        ctx.strokeStyle = `rgba(61, 116, 217, ${alpha.toFixed(3)})`;
+        ctx.lineWidth = 0.7 + distFactor * 0.8;
+        ctx.stroke();
+      }
+
+      for (const node of nodes) {
+        const radius = node.r + Math.sin(node.wobble) * 0.35;
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(11, 152, 230, 0.78)";
+        ctx.shadowBlur = 9;
+        ctx.shadowColor = "rgba(63, 182, 255, 0.38)";
+        ctx.fill();
+      }
+      ctx.shadowBlur = 0;
+
+      spawnPulses(frameScale);
+
+      for (let i = pulses.length - 1; i >= 0; i -= 1) {
+        const pulse = pulses[i];
+        const from = nodes[pulse.a];
+        const to = nodes[pulse.b];
+        if (!from || !to) {
+          pulses.splice(i, 1);
+          continue;
+        }
+
+        pulse.t += pulse.speed * frameScale;
+        if (pulse.t >= 1) {
+          pulses.splice(i, 1);
+          continue;
+        }
+
+        const x = from.x + (to.x - from.x) * pulse.t;
+        const y = from.y + (to.y - from.y) * pulse.t;
+
+        ctx.beginPath();
+        ctx.arc(x, y, pulse.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(191, 232, 255, 0.96)";
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = "rgba(151, 210, 255, 0.62)";
+        ctx.fill();
+      }
+      ctx.shadowBlur = 0;
+    }
+
+    function animate(now) {
+      const frameScale = Math.min((now - lastFrameTime) / 16.67, 2.5);
+      lastFrameTime = now;
+
+      updateNodes(frameScale);
+      draw(frameScale);
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    window.addEventListener(
+      "scroll",
+      () => {
+        scrollEnergy = Math.min(scrollEnergy + 0.16, 2.5);
+      },
+      { passive: true },
+    );
+
+    resizeCanvas();
+    draw(1);
+
+    if (!prefersReducedMotion) {
+      requestAnimationFrame(animate);
+    }
+  }
+
   function init() {
+    initNeuralNetworkBackground();
     initSmoothScroll();
     initPublicationControls();
     initNewsControls();
