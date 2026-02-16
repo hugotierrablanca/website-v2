@@ -242,6 +242,10 @@ p.tagline {
   text-align: right;
   line-height: 1.2;
   color: var(--dark-gray);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.16rem;
 }
 
 #live-status p {
@@ -254,12 +258,12 @@ p.tagline {
 }
 
 #live-location {
-  margin-top: 0.16rem;
+  margin-top: 0;
   font-size: 0.98rem;
 }
 
 #live-weather {
-  margin-top: 0.16rem;
+  margin-top: 0;
   font-size: 0.98rem;
   display: inline-flex;
   align-items: center;
@@ -1385,6 +1389,7 @@ section h2::before {
 
   #live-status {
     text-align: center;
+    align-items: center;
   }
 
   #live-weather {

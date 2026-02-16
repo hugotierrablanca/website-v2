@@ -319,80 +319,20 @@
     return "\u263c";
   }
 
-  async function getApproximateLocation() {
-    if (navigator.geolocation) {
-      try {
-        const position = await new Promise((resolve, reject) => {
-          navigator.geolocation.getCurrentPosition(resolve, reject, {
-            enableHighAccuracy: false,
-            timeout: 7000,
-            maximumAge: 600000,
-          });
-        });
-        return {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          city: "",
-          region: "",
-        };
-      } catch (error) {
-        // Fall through to IP lookup.
-      }
-    }
+  const BOSTON_LOCATION_LABEL = "Boston, MA";
+  const BOSTON_COORDS = {
+    latitude: 42.3601,
+    longitude: -71.0589,
+  };
 
-    try {
-      const ipData = await fetchJson("https://ipapi.co/json/");
-      return {
-        latitude: Number(ipData.latitude),
-        longitude: Number(ipData.longitude),
-        city: ipData.city || "",
-        region: ipData.region_code || ipData.region || "",
-      };
-    } catch (error) {
-      return null;
-    }
-  }
-
-  async function resolveLocationLabel(location) {
-    if (!location) {
-      return "Unknown location";
-    }
-
-    const hasCoords =
-      Number.isFinite(location.latitude) && Number.isFinite(location.longitude);
-    if (!hasCoords) {
-      return "Unknown location";
-    }
-
-    if (location.city || location.region) {
-      return [location.city, location.region].filter(Boolean).join(", ");
-    }
-
-    try {
-      const reverse = await fetchJson(
-        `https://geocoding-api.open-meteo.com/v1/reverse?latitude=${location.latitude}&longitude=${location.longitude}&language=en&format=json`,
-      );
-      const primary = Array.isArray(reverse.results) ? reverse.results[0] : null;
-      const city = primary?.name || "";
-      const region = primary?.admin1 || primary?.country_code || "";
-      return [city, region].filter(Boolean).join(", ") || "Unknown location";
-    } catch (error) {
-      return "Unknown location";
-    }
-  }
-
-  async function resolveWeather(location) {
-    if (
-      !location ||
-      !Number.isFinite(location.latitude) ||
-      !Number.isFinite(location.longitude)
-    ) {
+  async function resolveWeather(latitude, longitude) {
+    if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
       return null;
     }
 
     try {
       const weather = await fetchJson(
-        `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,weather_code&temperature_unit=celsius`,
+        `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code&temperature_unit=celsius`,
       );
       const current = weather.current || {};
       const tempC = Number(current.temperature_2m);
@@ -425,13 +365,15 @@
       month: "long",
       day: "numeric",
       year: "numeric",
+      timeZone: "America/New_York",
     }).format(now);
 
-    const location = await getApproximateLocation();
-    const locationLabel = await resolveLocationLabel(location);
-    locationEl.textContent = `I am @ ${locationLabel}`;
+    locationEl.textContent = `I am @ ${BOSTON_LOCATION_LABEL}`;
 
-    const weather = await resolveWeather(location);
+    const weather = await resolveWeather(
+      BOSTON_COORDS.latitude,
+      BOSTON_COORDS.longitude,
+    );
     if (!weather) {
       iconEl.textContent = "\u263c";
       tempEl.textContent = "--.- \u00b0C / --.- \u00b0F";
