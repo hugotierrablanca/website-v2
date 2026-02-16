@@ -289,6 +289,159 @@
     });
   }
 
+  async function fetchJson(url) {
+    const response = await fetch(url, { method: "GET" });
+    if (!response.ok) {
+      throw new Error(`Request failed: ${response.status}`);
+    }
+    return response.json();
+  }
+
+  function weatherIconForCode(code) {
+    if (code === 0) {
+      return "\u2600";
+    }
+    if (code >= 1 && code <= 3) {
+      return "\u26c5";
+    }
+    if (code === 45 || code === 48) {
+      return "\u{1F32B}";
+    }
+    if ((code >= 51 && code <= 67) || (code >= 80 && code <= 82)) {
+      return "\u{1F327}";
+    }
+    if (code >= 71 && code <= 77) {
+      return "\u2744";
+    }
+    if (code >= 95) {
+      return "\u26c8";
+    }
+    return "\u263c";
+  }
+
+  async function getApproximateLocation() {
+    if (navigator.geolocation) {
+      try {
+        const position = await new Promise((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject, {
+            enableHighAccuracy: false,
+            timeout: 7000,
+            maximumAge: 600000,
+          });
+        });
+        return {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          city: "",
+          region: "",
+        };
+      } catch (error) {
+        // Fall through to IP lookup.
+      }
+    }
+
+    try {
+      const ipData = await fetchJson("https://ipapi.co/json/");
+      return {
+        latitude: Number(ipData.latitude),
+        longitude: Number(ipData.longitude),
+        city: ipData.city || "",
+        region: ipData.region_code || ipData.region || "",
+      };
+    } catch (error) {
+      return null;
+    }
+  }
+
+  async function resolveLocationLabel(location) {
+    if (!location) {
+      return "Unknown location";
+    }
+
+    const hasCoords =
+      Number.isFinite(location.latitude) && Number.isFinite(location.longitude);
+    if (!hasCoords) {
+      return "Unknown location";
+    }
+
+    if (location.city || location.region) {
+      return [location.city, location.region].filter(Boolean).join(", ");
+    }
+
+    try {
+      const reverse = await fetchJson(
+        `https://geocoding-api.open-meteo.com/v1/reverse?latitude=${location.latitude}&longitude=${location.longitude}&language=en&format=json`,
+      );
+      const primary = Array.isArray(reverse.results) ? reverse.results[0] : null;
+      const city = primary?.name || "";
+      const region = primary?.admin1 || primary?.country_code || "";
+      return [city, region].filter(Boolean).join(", ") || "Unknown location";
+    } catch (error) {
+      return "Unknown location";
+    }
+  }
+
+  async function resolveWeather(location) {
+    if (
+      !location ||
+      !Number.isFinite(location.latitude) ||
+      !Number.isFinite(location.longitude)
+    ) {
+      return null;
+    }
+
+    try {
+      const weather = await fetchJson(
+        `https://api.open-meteo.com/v1/forecast?latitude=${location.latitude}&longitude=${location.longitude}&current=temperature_2m,weather_code&temperature_unit=celsius`,
+      );
+      const current = weather.current || {};
+      const tempC = Number(current.temperature_2m);
+      if (!Number.isFinite(tempC)) {
+        return null;
+      }
+      const tempF = tempC * (9 / 5) + 32;
+      return {
+        tempC,
+        tempF,
+        icon: weatherIconForCode(Number(current.weather_code)),
+      };
+    } catch (error) {
+      return null;
+    }
+  }
+
+  async function initLiveStatus() {
+    const dateEl = document.getElementById("live-date");
+    const locationEl = document.getElementById("live-location");
+    const tempEl = document.getElementById("live-temp");
+    const iconEl = document.getElementById("live-weather-icon");
+    if (!dateEl || !locationEl || !tempEl || !iconEl) {
+      return;
+    }
+
+    const now = new Date();
+    dateEl.textContent = new Intl.DateTimeFormat("en-US", {
+      weekday: "long",
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    }).format(now);
+
+    const location = await getApproximateLocation();
+    const locationLabel = await resolveLocationLabel(location);
+    locationEl.textContent = `I am @ ${locationLabel}`;
+
+    const weather = await resolveWeather(location);
+    if (!weather) {
+      iconEl.textContent = "\u263c";
+      tempEl.textContent = "--.- \u00b0C / --.- \u00b0F";
+      return;
+    }
+
+    iconEl.textContent = weather.icon;
+    tempEl.textContent = `${weather.tempC.toFixed(1)} \u00b0C / ${weather.tempF.toFixed(1)} \u00b0F`;
+  }
+
   function initNeuralNetworkBackground() {
     const canvas = document.getElementById("neural-network-bg");
     if (!canvas) {
@@ -508,6 +661,7 @@
   function init() {
     initNeuralNetworkBackground();
     initSmoothScroll();
+    initLiveStatus();
     initPublicationControls();
     initNewsControls();
     initResearchInterestsAccordion();
