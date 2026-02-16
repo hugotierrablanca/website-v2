@@ -21,13 +21,13 @@
   let visiblePubCount = 3;
   let visibleNewsCount = 3;
 
-  function setButtonState(button, disabled) {
-    if (!button) {
-      return;
+  function updateExpandButtons(showMoreBtn, showLessBtn, isExpanded) {
+    if (showMoreBtn) {
+      showMoreBtn.style.display = !isExpanded ? "inline-block" : "none";
     }
-
-    button.disabled = disabled;
-    button.classList.toggle("disabled", disabled);
+    if (showLessBtn) {
+      showLessBtn.style.display = isExpanded ? "inline-block" : "none";
+    }
   }
 
   function getActiveSectionId() {
@@ -152,8 +152,8 @@
       card.style.display = "block";
     });
 
-    setButtonState(pubShowLess, visiblePubCount <= 3);
-    setButtonState(pubShowMore, filtered.length <= visiblePubCount);
+    const isExpanded = visiblePubCount > 3;
+    updateExpandButtons(pubShowMore, pubShowLess, isExpanded);
   }
 
   function initPublicationControls() {
@@ -193,7 +193,7 @@
 
     if (pubShowLess) {
       pubShowLess.addEventListener("click", () => {
-        visiblePubCount = Math.max(3, visiblePubCount - 3);
+        visiblePubCount = 3;
         renderPublications();
       });
     }
@@ -211,8 +211,8 @@
       update.style.display = "grid";
     });
 
-    setButtonState(newsShowLess, visibleNewsCount <= 3);
-    setButtonState(newsShowMore, updates.length <= visibleNewsCount);
+    const isExpanded = visibleNewsCount > 3;
+    updateExpandButtons(newsShowMore, newsShowLess, isExpanded);
   }
 
   function initNewsControls() {
@@ -225,7 +225,7 @@
 
     if (newsShowLess) {
       newsShowLess.addEventListener("click", () => {
-        visibleNewsCount = Math.max(3, visibleNewsCount - 2);
+        visibleNewsCount = 3;
         renderNews();
       });
     }

@@ -619,13 +619,18 @@ section h2::before {
   background: transparent;
   font-family: monospace;
   text-transform: none;
-  color: var(--dark-gray);
+  background: -webkit-linear-gradient(45deg, var(--blue-gradient-light), var(--blue-gradient-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-weight: 600;
   cursor: pointer;
   padding: 0.2rem 0.4rem;
 }
 
 .my-button:hover {
-  color: var(--accent);
+  opacity: 0.8;
 }
 
 .my-button.disabled {
@@ -880,15 +885,22 @@ section h2::before {
 .ri-section {
   width: 100%;
   font-family: "Inconsolata", monospace;
+  margin-top: 3.2rem;
   padding-bottom: 64px;
 }
 
-.ri-eyebrow {
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--med-gray);
-  margin-bottom: 14px;
+.ri-title {
+  position: relative;
+  margin: 0 0 0.5rem;
+}
+
+.ri-title::before {
+  content: "";
+  position: absolute;
+  width: 2.5em;
+  height: 0.5rem;
+  background: linear-gradient(90deg, var(--blue-gradient-light), var(--blue-gradient-dark));
+  top: -1.5rem;
 }
 
 .ri-intro {
@@ -896,7 +908,7 @@ section h2::before {
   line-height: 1.72;
   color: var(--dark-gray);
   margin-bottom: 10px;
-  max-width: 660px;
+  max-width: none;
 }
 
 .ri-intro strong {
@@ -909,7 +921,7 @@ section h2::before {
   letter-spacing: 0.05em;
   color: var(--med-gray);
   opacity: 0.7;
-  margin-bottom: 40px;
+  margin-bottom: 18px;
   font-style: italic;
 }
 
