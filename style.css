@@ -255,6 +255,10 @@ p.tagline {
   gap: 0;
 }
 
+#header-right .icons {
+  margin-top: 0.6rem;
+}
+
 #live-status {
   text-align: right;
   line-height: 1.2;
@@ -1402,6 +1406,10 @@ section h2::before {
 
   #header-right {
     align-items: center;
+  }
+
+  #header-right .icons {
+    margin-top: 0.25rem;
   }
 
   #bio {
