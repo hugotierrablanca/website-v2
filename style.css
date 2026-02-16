@@ -116,7 +116,7 @@ a:hover {
 }
 
 .grad1 {
-  background: -webkit-linear-gradient(45deg, var(--blue-gradient-dark), var(--blue-gradient-light));
+  background: -webkit-linear-gradient(45deg, var(--blue-gradient-light), var(--blue-gradient-dark));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -161,7 +161,7 @@ a:hover {
   position: absolute;
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, var(--blue-gradient-dark), var(--blue-gradient-light));
+  background: linear-gradient(90deg, var(--blue-gradient-light), var(--blue-gradient-dark));
   bottom: 0;
   left: 0;
 }
@@ -280,7 +280,7 @@ section h2::before {
   position: absolute;
   width: 2.5em;
   height: 0.5rem;
-  background: linear-gradient(90deg, var(--blue-gradient-dark), var(--blue-gradient-light));
+  background: linear-gradient(90deg, var(--blue-gradient-light), var(--blue-gradient-dark));
   top: -1.5rem;
 }
 
@@ -293,6 +293,7 @@ section h2::before {
   margin-top: 1rem;
   display: grid;
   grid-template-columns: 1fr auto;
+  column-gap: 2.5rem;
   row-gap: 0.5rem;
   background-color: var(--light-gray);
   padding: 1rem;
@@ -305,49 +306,86 @@ section h2::before {
   align-items: center;
   gap: 0.6rem;
   width: 100%;
+  padding-right: 1.4rem;
 }
 
-#year-range {
+#year-range-wrap {
+  position: relative;
   width: 100%;
   min-width: 260px;
+  height: 20px;
+}
+
+#year-range-wrap .year-track,
+#year-range-wrap #year-active-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 0.44rem;
+  border-radius: 999px;
+}
+
+#year-range-wrap .year-track {
+  background: #c9cdd6;
+}
+
+#year-range-wrap #year-active-track {
+  background: linear-gradient(90deg, var(--blue-gradient-light), var(--blue-gradient-mid), var(--blue-gradient-dark));
+}
+
+#year-range-min,
+#year-range-max {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  margin: 0;
   -webkit-appearance: none;
   appearance: none;
-  height: 0.44rem;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--blue-gradient-dark), var(--blue-gradient-mid), var(--blue-gradient-light));
+  background: transparent;
   outline: none;
+  pointer-events: none;
 }
 
-#year-range::-webkit-slider-runnable-track {
+#year-range-min::-webkit-slider-runnable-track,
+#year-range-max::-webkit-slider-runnable-track {
   height: 0.44rem;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--blue-gradient-dark), var(--blue-gradient-mid), var(--blue-gradient-light));
+  background: transparent;
 }
 
-#year-range::-webkit-slider-thumb {
+#year-range-min::-webkit-slider-thumb,
+#year-range-max::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 10px;
-  height: 10px;
-  margin-top: -1px;
+  pointer-events: auto;
+  width: 16px;
+  height: 16px;
+  margin-top: -5px;
   border-radius: 50%;
-  border: 1px solid rgba(34, 78, 170, 0.45);
-  background: #ffffff;
+  border: none;
+  background:
+    radial-gradient(circle, #ffffff 46%, transparent 48%),
+    linear-gradient(145deg, var(--blue-gradient-light), var(--blue-gradient-dark));
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
 }
 
-#year-range::-moz-range-track {
+#year-range-min::-moz-range-track,
+#year-range-max::-moz-range-track {
   height: 0.44rem;
-  border-radius: 999px;
+  background: transparent;
   border: none;
-  background: linear-gradient(90deg, var(--blue-gradient-dark), var(--blue-gradient-mid), var(--blue-gradient-light));
 }
 
-#year-range::-moz-range-thumb {
-  width: 10px;
-  height: 10px;
+#year-range-min::-moz-range-thumb,
+#year-range-max::-moz-range-thumb {
+  pointer-events: auto;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  border: 1px solid rgba(34, 78, 170, 0.45);
-  background: #ffffff;
+  border: none;
+  background:
+    radial-gradient(circle, #ffffff 46%, transparent 48%),
+    linear-gradient(145deg, var(--blue-gradient-light), var(--blue-gradient-dark));
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
 }
 
@@ -361,6 +399,7 @@ section h2::before {
   grid-template-columns: auto 1fr;
   align-items: center;
   gap: 0.6rem;
+  margin-left: 0;
 }
 
 #tag-select {
@@ -417,6 +456,7 @@ section h2::before {
   backdrop-filter: blur(2px);
   overflow: hidden;
   position: relative;
+  border-radius: 20px;
 }
 
 .pub:hover {
@@ -428,6 +468,8 @@ section h2::before {
   position: relative;
   aspect-ratio: 16 / 9;
   margin-bottom: 0.25rem;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden;
 }
 
 .pub-thumb {
@@ -436,7 +478,7 @@ section h2::before {
 }
 
 .placeholder {
-  background: linear-gradient(135deg, rgba(13, 47, 119, 0.18), rgba(130, 214, 255, 0.34));
+  background: linear-gradient(135deg, rgba(130, 214, 255, 0.34), rgba(13, 47, 119, 0.18));
 }
 
 .pub-inner {
@@ -460,7 +502,7 @@ section h2::before {
 }
 
 .pub .author-highlight {
-  background: linear-gradient(90deg, var(--blue-gradient-dark), var(--blue-gradient-light));
+  background: linear-gradient(90deg, var(--blue-gradient-light), var(--blue-gradient-dark));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -478,7 +520,7 @@ section h2::before {
   align-items: flex-start;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 0.38rem;
+  margin-bottom: 0.65rem;
 }
 
 .pub .card-tags {
@@ -506,7 +548,7 @@ section h2::before {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: linear-gradient(180deg, var(--blue-gradient-mid), var(--blue-gradient-light));
+  background: linear-gradient(180deg, var(--blue-gradient-light), var(--blue-gradient-dark));
 }
 
 .pub .tags {
@@ -629,7 +671,7 @@ section h2::before {
   display: inline-block;
   margin-top: 0.2rem;
   font-size: 0.68rem;
-  text-transform: lowercase;
+  text-transform: none;
   background: var(--lightest-accent);
   color: var(--accent);
   padding: 0.15rem 0.45rem;
@@ -676,7 +718,7 @@ section h2::before {
   position: absolute;
   top: 0;
   left: 0;
-  background: linear-gradient(rgba(13, 152, 230, 0.72), rgba(47, 128, 237, 0.72));
+  background: linear-gradient(rgba(129, 206, 250, 0.72), rgba(47, 128, 237, 0.72));
   color: white;
   display: flex;
   align-items: center;
@@ -688,11 +730,11 @@ section h2::before {
 }
 
 #fun-cards .overlay.blue {
-  background: linear-gradient(rgba(61, 116, 217, 0.72), rgba(47, 157, 216, 0.72));
+  background: linear-gradient(rgba(156, 201, 255, 0.72), rgba(61, 116, 217, 0.72));
 }
 
 #fun-cards .overlay.orange {
-  background: linear-gradient(rgba(47, 157, 216, 0.72), rgba(103, 157, 246, 0.72));
+  background: linear-gradient(rgba(161, 220, 250, 0.72), rgba(103, 157, 246, 0.72));
 }
 
 #fun-cards .fun-card a:hover .overlay {
@@ -718,7 +760,7 @@ section h2::before {
   border: 2px solid transparent;
   background:
     linear-gradient(transparent, transparent) padding-box,
-    linear-gradient(-45deg, var(--blue-gradient-dark), var(--blue-gradient-light)) border-box;
+    linear-gradient(-45deg, var(--blue-gradient-light), var(--blue-gradient-dark)) border-box;
   border-radius: 100%;
 }
 
@@ -737,7 +779,7 @@ section h2::before {
   font-size: smaller;
   display: grid;
   grid-template-columns: 80px auto;
-  background: linear-gradient(45deg, transparent, white);
+  background: linear-gradient(45deg, var(--lightest-accent), var(--light-med-accent4));
   background-color: var(--light-gray);
   border-radius: 80px;
   padding: 0.5rem 1rem 0.5rem 0.5rem;

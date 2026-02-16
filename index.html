@@ -104,17 +104,22 @@
           <div id="slider-contain">
             <b>Filter by year:</b>
             <span id="year-min">2023</span>
-            <input id="year-range" type="range" min="2023" max="2026" step="1" value="2023" />
-            <span>2026</span>
+            <div id="year-range-wrap" aria-label="Filter by year range">
+              <div class="year-track"></div>
+              <div id="year-active-track"></div>
+              <input id="year-range-min" type="range" min="2023" max="2026" step="1" value="2023" />
+              <input id="year-range-max" type="range" min="2023" max="2026" step="1" value="2026" />
+            </div>
+            <span id="year-max">2026</span>
           </div>
 
           <div id="tag-contain">
-            <b>or tag:</b>
+            <b>Or tag:</b>
             <select id="tag-select" aria-label="Filter publications by tag">
-              <option value="all">select tag</option>
-              <option value="ai safety">ai safety</option>
-              <option value="evals">evals</option>
-              <option value="mech interp">mech interp</option>
+              <option value="all">Select tag</option>
+              <option value="ai safety">AI Safety</option>
+              <option value="evals">Evals</option>
+              <option value="mech interp">Mech Interp</option>
             </select>
           </div>
         </div>
@@ -132,8 +137,6 @@
 
               <div class="pub-inner">
                 <div>
-                  <h3>Theoretical Error Bounds for LLM-Imputed Labels in Selective Labels Problems</h3>
-                  <p class="author"><span class="author-highlight">Hugo Tierrablanca</span>, Martin Pawelczyk, Himabindu Lakkaraju</p>
                   <div class="pub-meta-row">
                     <p class="venue">In Preparation, 2025</p>
                     <p class="card-tags" aria-label="Project categories">
@@ -141,6 +144,8 @@
                       <span class="card-tag">AI Safety</span>
                     </p>
                   </div>
+                  <h3>Theoretical Error Bounds for LLM-Imputed Labels in Selective Labels Problems</h3>
+                  <p class="author"><span class="author-highlight">Hugo Tierrablanca</span>, Martin Pawelczyk, Himabindu Lakkaraju</p>
                   <p class="summary">
                     Developing PAC labeling frameworks and contraction arguments to bound evaluation
                     errors when using LLM-generated labels in selective-label settings.
@@ -161,14 +166,14 @@
 
               <div class="pub-inner">
                 <div>
-                  <h3>Computational Analysis of Neural Organoid Activity</h3>
-                  <p class="author">Arlotta Lab, Harvard University</p>
                   <div class="pub-meta-row">
                     <p class="venue">Summer Research Experience, 2023</p>
                     <p class="card-tags" aria-label="Project categories">
                       <span class="card-tag">Mech Interp</span>
                     </p>
                   </div>
+                  <h3>Computational Analysis of Neural Organoid Activity</h3>
+                  <p class="author">Arlotta Lab, Harvard University</p>
                   <p class="summary">
                     Analyzed and modeled electrophysiological data from human brain organoids to
                     investigate neural behavior and possible brain-machine interface directions.
@@ -188,8 +193,6 @@
 
               <div class="pub-inner">
                 <div>
-                  <h3>Unified Attribution: Bridging Mechanistic Interpretability and Data Influence for In-Context Learning</h3>
-                  <p class="author">Shichang Zhang, <span class="author-highlight">Hugo Tierrablanca</span>, Himabindu Lakkaraju</p>
                   <div class="pub-meta-row">
                     <p class="venue">In Progress, 2026</p>
                     <p class="card-tags" aria-label="Project categories">
@@ -197,6 +200,8 @@
                       <span class="card-tag">AI Safety</span>
                     </p>
                   </div>
+                  <h3>Unified Attribution: Bridging Mechanistic Interpretability and Data Influence for In-Context Learning</h3>
+                  <p class="author">Shichang Zhang, <span class="author-highlight">Hugo Tierrablanca</span>, Himabindu Lakkaraju</p>
                   <p class="summary">
                     We design a unified framework that connects model behaviors to their origins by
                     bridging mechanistic interpretability and data attribution. Our approach traces
@@ -229,7 +234,7 @@
             <b class="date">Nov 2025</b>
             <div>
               <p>Began position as Research Associate at Harvard University, continuing work with Prof. Himabindu Lakkaraju on AI safety research.</p>
-              <span class="update-tag">milestone</span>
+              <span class="update-tag">Milestone</span>
             </div>
           </div>
 
@@ -237,7 +242,7 @@
             <b class="date">Jun 2025</b>
             <div>
               <p>Started selective-labels research focused on evaluation methods using LLM-imputed labels.</p>
-              <span class="update-tag">research</span>
+              <span class="update-tag">Research</span>
             </div>
           </div>
 
@@ -245,7 +250,7 @@
             <b class="date">May 2025</b>
             <div>
               <p>Graduated from Harvard University with a B.A. in Applied Mathematics.</p>
-              <span class="update-tag">milestone</span>
+              <span class="update-tag">Milestone</span>
             </div>
           </div>
         </div>
@@ -332,7 +337,7 @@
       </section>
 
       <footer id="footer">
-        <p class="footer-made">Made with style by Hugo Tierrablanca <span class="lighter">(Updated Feb 2026)</span></p>
+        <p class="footer-made">Updated Feb 2026</p>
         <span class="footer-email accent monospace smaller grad1">htierrablanca [at] hbs [dot] edu</span>
         <a class="footer-top" id="back-to-top" href="#home" title="Back to top">Back to top</a>
       </footer>

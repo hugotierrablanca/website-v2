@@ -4,8 +4,11 @@
   const navLinks = Array.from(document.querySelectorAll("#nav a"));
   const sections = ["home", "research", "news", "misc"];
 
-  const yearRange = document.getElementById("year-range");
-  const yearMin = document.getElementById("year-min");
+  const yearRangeMin = document.getElementById("year-range-min");
+  const yearRangeMax = document.getElementById("year-range-max");
+  const yearActiveTrack = document.getElementById("year-active-track");
+  const yearMinLabel = document.getElementById("year-min");
+  const yearMaxLabel = document.getElementById("year-max");
   const tagSelect = document.getElementById("tag-select");
   const pubCards = Array.from(document.querySelectorAll(".pub"));
   const pubShowMore = document.getElementById("pub-show-more");
@@ -78,8 +81,36 @@
     }
   }
 
+  function updateYearRangeUI() {
+    if (!yearRangeMin || !yearRangeMax) {
+      return;
+    }
+
+    const rangeFloor = Number(yearRangeMin.min);
+    const rangeCeil = Number(yearRangeMin.max);
+    const minValue = Number(yearRangeMin.value);
+    const maxValue = Number(yearRangeMax.value);
+
+    if (yearMinLabel) {
+      yearMinLabel.textContent = String(minValue);
+    }
+
+    if (yearMaxLabel) {
+      yearMaxLabel.textContent = String(maxValue);
+    }
+
+    if (yearActiveTrack) {
+      const full = Math.max(1, rangeCeil - rangeFloor);
+      const leftPct = ((minValue - rangeFloor) / full) * 100;
+      const rightPct = ((maxValue - rangeFloor) / full) * 100;
+      yearActiveTrack.style.left = `${leftPct}%`;
+      yearActiveTrack.style.width = `${Math.max(0, rightPct - leftPct)}%`;
+    }
+  }
+
   function filteredPublications() {
-    const minYear = yearRange ? Number(yearRange.value) : 0;
+    const minYear = yearRangeMin ? Number(yearRangeMin.value) : 0;
+    const maxYear = yearRangeMax ? Number(yearRangeMax.value) : 9999;
     const selectedTag = tagSelect ? tagSelect.value : "all";
 
     return pubCards.filter((card) => {
@@ -88,7 +119,7 @@
         .split(",")
         .map((tag) => tag.trim().toLowerCase());
 
-      const yearMatch = cardYear >= minYear;
+      const yearMatch = cardYear >= minYear && cardYear <= maxYear;
       const tagMatch = selectedTag === "all" || tags.includes(selectedTag);
 
       return yearMatch && tagMatch;
@@ -111,9 +142,21 @@
   }
 
   function initPublicationControls() {
-    if (yearRange && yearMin) {
-      yearRange.addEventListener("input", () => {
-        yearMin.textContent = yearRange.value;
+    if (yearRangeMin && yearRangeMax) {
+      yearRangeMin.addEventListener("input", () => {
+        if (Number(yearRangeMin.value) > Number(yearRangeMax.value)) {
+          yearRangeMin.value = yearRangeMax.value;
+        }
+        updateYearRangeUI();
+        visiblePubCount = 3;
+        renderPublications();
+      });
+
+      yearRangeMax.addEventListener("input", () => {
+        if (Number(yearRangeMax.value) < Number(yearRangeMin.value)) {
+          yearRangeMax.value = yearRangeMin.value;
+        }
+        updateYearRangeUI();
         visiblePubCount = 3;
         renderPublications();
       });
@@ -140,6 +183,7 @@
       });
     }
 
+    updateYearRangeUI();
     renderPublications();
   }
 
