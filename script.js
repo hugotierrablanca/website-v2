@@ -2,7 +2,7 @@
   "use strict";
 
   const navLinks = Array.from(document.querySelectorAll("#nav a"));
-  const sections = ["home", "research", "news", "misc"];
+  const sections = ["home", "interests", "research", "news", "misc"];
 
   const yearRangeMin = document.getElementById("year-range-min");
   const yearRangeMax = document.getElementById("year-range-max");

@@ -886,13 +886,29 @@ section h2::before {
   font-family: 'Inconsolata', monospace;
 }
 
-/* Eyebrow label */
-.ri-eyebrow {
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--med-gray);
-  margin-bottom: 16px;
+/* Section heading */
+.ri-heading {
+  position: relative;
+  width: fit-content;
+  margin-bottom: 20px;
+  font-size: 1.72rem;
+  font-weight: 700;
+  line-height: 1.15;
+  background: -webkit-linear-gradient(45deg, var(--blue-gradient-light), var(--blue-gradient-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ri-heading::before {
+  content: "";
+  position: absolute;
+  top: -1rem;
+  left: 0;
+  width: 2.5em;
+  height: 0.45rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--blue-gradient-light), var(--blue-gradient-dark));
 }
 
 /* Section intro blurb */
@@ -1143,6 +1159,10 @@ section h2::before {
 
 /* Responsive */
 @media (max-width: 580px) {
+  .ri-heading {
+    font-size: 1.45rem;
+  }
+
   .ri-body-content {
     grid-template-columns: 1fr;
     padding-left: 0;
