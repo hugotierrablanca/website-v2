@@ -65,9 +65,12 @@
           return;
         }
 
-        const offset = target.classList.contains("anchor") ? 0 : 72;
+        const targetContainer = target.classList.contains("anchor")
+          ? target.closest("section, .ri-section")
+          : null;
+        const targetTop = targetContainer ? targetContainer.offsetTop : target.offsetTop;
         window.scrollTo({
-          top: Math.max(0, target.offsetTop - offset),
+          top: Math.max(0, targetTop - 72),
           behavior: "smooth",
         });
       });
