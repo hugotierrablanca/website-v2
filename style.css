@@ -891,13 +891,10 @@ section h2::before {
   position: relative;
   width: fit-content;
   margin-bottom: 20px;
-  font-size: 1.72rem;
+  font-size: 1.5em;
   font-weight: 700;
-  line-height: 1.15;
-  background: -webkit-linear-gradient(45deg, var(--blue-gradient-light), var(--blue-gradient-dark));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  line-height: 1.2;
+  color: var(--black);
 }
 
 .ri-heading::before {
@@ -1005,7 +1002,7 @@ section h2::before {
   cursor: pointer;
   padding: 17px 0;
   display: grid;
-  grid-template-columns: 34px 1fr auto;
+  grid-template-columns: 44px 1fr auto;
   align-items: center;
   gap: 12px;
   text-align: left;
@@ -1013,14 +1010,18 @@ section h2::before {
 }
 
 .ri-idx {
-  font-size: 10px;
+  font-size: 11.5px;
+  font-weight: 600;
   letter-spacing: 0.05em;
-  color: var(--gray);
+  color: var(--med-gray);
   padding-top: 1px;
+  padding-left: 9px;
+  position: relative;
+  z-index: 1;
 }
 
 .ri-item.open .ri-idx {
-  color: var(--light-med-accent);
+  color: var(--accent);
 }
 
 .ri-name {
@@ -1159,10 +1160,6 @@ section h2::before {
 
 /* Responsive */
 @media (max-width: 580px) {
-  .ri-heading {
-    font-size: 1.45rem;
-  }
-
   .ri-body-content {
     grid-template-columns: 1fr;
     padding-left: 0;
@@ -1172,6 +1169,12 @@ section h2::before {
   .ri-tags {
     display: none;
   }
+}
+
+#footer .footer-email {
+  color: var(--blue-gradient-dark);
+  background: none;
+  -webkit-text-fill-color: var(--blue-gradient-dark);
 }
 
 @media screen and (max-width: 1100px) {
