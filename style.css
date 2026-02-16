@@ -186,8 +186,7 @@ a:hover {
 
 #nav a.selected {
   font-weight: 400;
-  color: var(--black);
-  pointer-events: none;
+  color: var(--dark-gray);
 }
 
 #masthead-grid {
@@ -880,96 +879,94 @@ section h2::before {
 
 .ri-section {
   width: 100%;
-  max-width: 740px;
-  margin: 0 auto;
-  padding: 64px 0 72px;
-  font-family: 'Inconsolata', monospace;
+  font-family: "Inconsolata", monospace;
+  padding-bottom: 64px;
 }
 
-/* Section heading */
-.ri-heading {
-  position: relative;
-  width: fit-content;
-  margin-bottom: 20px;
-  font-size: 1.5em;
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--black);
+.ri-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--med-gray);
+  margin-bottom: 14px;
 }
 
-.ri-heading::before {
-  content: "";
-  position: absolute;
-  top: -1rem;
-  left: 0;
-  width: 2.5em;
-  height: 0.45rem;
-  border-radius: 2px;
-  background: linear-gradient(90deg, var(--blue-gradient-light), var(--blue-gradient-dark));
-}
-
-/* Section intro blurb */
 .ri-intro {
-  font-size: 15.5px;
+  font-size: 15px;
   line-height: 1.72;
   color: var(--dark-gray);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   max-width: 660px;
 }
 
-/* "No particular order" note, placed right below intro */
+.ri-intro strong {
+  color: var(--black);
+  font-weight: 600;
+}
+
 .ri-order-note {
   font-size: 11px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   color: var(--med-gray);
-  opacity: 0.75;
-  margin-bottom: 52px;
+  opacity: 0.7;
+  margin-bottom: 40px;
   font-style: italic;
 }
 
-/* Track container */
-.ri-track {
-  margin-bottom: 48px;
-}
-
-/* Track header
-   Uses the site's main horizontal gradient as a decorative bottom border.
-   Achieved by layering a gradient pseudo-element under the header row.
-*/
-.ri-track-header {
+/* Tab selector row */
+.ri-tabs {
   display: flex;
-  align-items: center;
-  gap: 14px;
-  padding-bottom: 12px;
-  margin-bottom: 0;
+  border-bottom: 1.5px solid var(--gray);
+  margin-bottom: 28px;
   position: relative;
 }
 
-.ri-track-header::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1.5px;
-  background: linear-gradient(90deg, var(--blue-gradient-light), var(--blue-gradient-dark));
-}
-
-.ri-track-roman {
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--light-med-accent);
-}
-
-.ri-track-title {
+.ri-tab-btn {
+  font-family: 'Inconsolata', monospace;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 32px 13px 0;
+  color: var(--med-gray);
+  position: relative;
+  transition: color 0.2s;
+}
+
+/* Gradient underline on active tab */
+.ri-tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -1.5px;
+  left: 0;
+  right: 32px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--blue-gradient-light), var(--blue-gradient-dark));
+  opacity: 0;
+  transition: opacity 0.22s;
+}
+
+.ri-tab-btn.active {
   background: -webkit-linear-gradient(45deg, var(--blue-gradient-light), var(--blue-gradient-dark));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.ri-tab-btn.active::after {
+  opacity: 1;
+}
+
+/* Panels */
+.ri-track-panel {
+  display: none;
+}
+
+.ri-track-panel.active {
+  display: block;
 }
 
 /* Accordion item */
@@ -1014,7 +1011,7 @@ section h2::before {
   font-weight: 600;
   letter-spacing: 0.05em;
   color: var(--med-gray);
-  padding-top: 1px;
+  padding-top: 0;
   padding-left: 9px;
   position: relative;
   z-index: 1;
@@ -1024,12 +1021,35 @@ section h2::before {
   color: var(--accent);
 }
 
+.ri-name-block {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ri-problem {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--light-med-accent);
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(2px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.ri-item.open .ri-problem,
+.ri-trigger:hover .ri-problem {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .ri-name {
   font-size: 17px;
   font-weight: 600;
   letter-spacing: 0.01em;
   color: var(--dark-gray);
-  line-height: 1.25;
+  line-height: 1.2;
   transition: color 0.18s;
 }
 
@@ -1084,7 +1104,7 @@ section h2::before {
   color: var(--med-accent);
 }
 
-/* Expandable body - grid trick for smooth animation */
+/* Smooth height animation via grid-template-rows trick */
 .ri-body {
   display: grid;
   grid-template-rows: 0fr;
@@ -1102,9 +1122,18 @@ section h2::before {
 /* Expanded content layout */
 .ri-body-content {
   display: grid;
-  grid-template-columns: 1fr 190px;
+  grid-template-columns: 1fr 200px;
   gap: 28px;
-  padding: 4px 0 26px 46px;
+  padding: 6px 0 32px 46px;
+}
+
+.ri-goal {
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  color: var(--med-accent);
+  margin-bottom: 12px;
+  font-style: italic;
+  line-height: 1.5;
 }
 
 .ri-desc {
@@ -1118,32 +1147,91 @@ section h2::before {
   font-weight: 600;
 }
 
-/* Sidebar: Open Questions */
-.ri-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.ri-desc em {
+  font-style: italic;
 }
 
-.ri-sidebar-label {
+/* Sub-topic list with named clusters */
+.ri-subtopics {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-top: 14px;
+}
+
+.ri-subtopic-group {
+  margin-bottom: 16px;
+}
+
+.ri-subtopic-group:last-child {
+  margin-bottom: 0;
+}
+
+/* Cluster label with trailing hairline rule */
+.ri-group-label {
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--light-med-accent);
+  opacity: 0.8;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ri-group-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--light-accent);
+}
+
+.ri-subtopic {
+  font-size: 12.5px;
+  color: var(--med-gray);
+  padding-left: 14px;
+  position: relative;
+  line-height: 1.6;
+  margin-bottom: 9px;
+}
+
+.ri-subtopic:last-child {
+  margin-bottom: 0;
+}
+
+.ri-subtopic::before {
+  content: "*";
+  position: absolute;
+  left: 2px;
+  color: var(--light-med-accent);
+}
+
+.ri-subtopic strong {
+  color: var(--dark-gray);
+  font-weight: 600;
+}
+
+/* Sidebar: Why it's hard */
+.ri-sidebar {
+  align-self: start;
+  position: sticky;
+  top: 20px;
+}
+
+.ri-hard-label {
   font-size: 9px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--light-med-accent);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   padding-bottom: 4px;
   border-bottom: 1px solid var(--light-accent);
 }
 
-.ri-questions {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.ri-question {
+.ri-hard-text {
   font-size: 11.5px;
-  line-height: 1.55;
+  line-height: 1.62;
   color: var(--med-gray);
   padding-left: 10px;
   border-left: 1.5px solid var(--light-med-accent);
@@ -1151,11 +1239,11 @@ section h2::before {
 
 /* Footer note */
 .ri-footer {
-  margin-top: 8px;
+  margin-top: 12px;
   font-size: 12px;
   font-style: italic;
   color: var(--med-gray);
-  opacity: 0.8;
+  opacity: 0.75;
 }
 
 /* Responsive */

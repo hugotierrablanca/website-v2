@@ -100,32 +100,39 @@
 
       <div class="ri-section">
         <div class="anchor" id="interests"></div>
-        <h2 class="ri-heading">Research Interests</h2>
+
+        <p class="ri-eyebrow">Research Interests</p>
 
         <p class="ri-intro">
-          My research interests span AI safety and capabilities, with a focus on building
-          AI systems that are both more powerful and more trustworthy. On the safety side,
-          I am interested in how neural networks represent and process information, and how
-          to control and align AI with human values. On the capabilities side, I am drawn
-          to generative AI and world models as a path toward genuine reasoning, spatial
-          understanding, and embodied intelligence.
+          My research spans <strong>AI safety</strong> and <strong>capabilities</strong>,
+          with a focus on building AI systems that are both more powerful and more
+          trustworthy. On the safety side, I am interested in mechanistic interpretability
+          - reverse-engineering the internal structure of neural networks - and in alignment,
+          ensuring systems reliably act in accordance with human values even as they grow more
+          capable. On the capabilities side, I am interested in the full stack of intelligent
+          behavior: learning structured representations, reasoning causally, modeling world
+          dynamics, and acting in the physical world.
         </p>
-        <p class="ri-order-note">Interests listed in no particular order.</p>
+        <p class="ri-order-note">Interests listed in no particular order</p>
 
-        <div class="ri-track">
-          <div class="ri-track-header">
-            <span class="ri-track-roman">I</span>
-            <span class="ri-track-title">AI Safety</span>
-          </div>
+        <div class="ri-tabs">
+          <button class="ri-tab-btn active" data-track="safety">AI Safety</button>
+          <button class="ri-tab-btn" data-track="capabilities">Capabilities</button>
+        </div>
 
+        <div class="ri-track-panel active" id="ri-panel-safety">
           <div class="ri-item">
             <button class="ri-trigger" aria-expanded="false">
               <span class="ri-idx">1.1</span>
-              <span class="ri-name">Mechanistic Interpretability</span>
+              <div class="ri-name-block">
+                <span class="ri-problem">Understand</span>
+                <span class="ri-name">Mechanistic Interpretability &amp; Model Analysis</span>
+              </div>
               <div class="ri-trigger-right">
                 <div class="ri-tags">
                   <span class="ri-tag">circuits</span>
-                  <span class="ri-tag">representations</span>
+                  <span class="ri-tag">geometry</span>
+                  <span class="ri-tag">steering</span>
                 </div>
                 <svg class="ri-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polyline points="6 9 12 15 18 9"></polyline>
@@ -135,23 +142,37 @@
             <div class="ri-body">
               <div class="ri-body-inner">
                 <div class="ri-body-content">
-                  <p class="ri-desc">
-                    I'm interested in reverse-engineering the internal computations of neural
-                    networks - understanding how models store knowledge, form representations,
-                    and route information through <strong>circuits</strong>. Rather than treating
-                    models as black boxes, mechanistic interpretability asks <em>how</em> a
-                    specific behavior is computed, tracing it back to individual components and
-                    their interactions. My current work connects here through
-                    <strong>data attribution and influence functions</strong>: understanding why
-                    a model produces a given output by identifying which training examples most
-                    shaped that behavior.
-                  </p>
-                  <div class="ri-sidebar">
-                    <p class="ri-sidebar-label">Open Questions</p>
-                    <div class="ri-questions">
-                      <p class="ri-question">Can influence functions reliably attribute model behavior to training data at scale?</p>
-                      <p class="ri-question">Do circuits identified in small models transfer to larger architectures?</p>
+                  <div>
+                    <p class="ri-goal">How do we reverse-engineer the internal cognitive structures of neural networks - treating them as complex systems with distinct "biology," developmental stages, and controllable internal states?</p>
+                    <p class="ri-desc">I'm interested in interpretability not just as a safety tool, but as a scientific program: understanding what models have actually learned, at the level of weights and activations. My current work on <strong>data attribution and influence functions</strong> connects here - tracing model behavior back to the training examples that shaped it.</p>
+                    <div class="ri-subtopics">
+                      <div class="ri-subtopic-group">
+                        <div class="ri-group-label">Discovery</div>
+                        <p class="ri-subtopic"><strong>Model Biology &amp; Circuit Analysis</strong> - Mapping the "connectome" of large models to identify universal cognitive motifs - induction heads, inhibition circuits, memory retrieval mechanisms - that implement specific capabilities. This includes using tractable model organisms (Othello-GPT, algorithmic toy tasks) to establish ground-truth mechanisms before scaling to frontier systems.</p>
+                        <p class="ri-subtopic"><strong>Developmental Interpretability</strong> - Studying the "embryology" of models by tracking how circuits and capabilities emerge over training time, specifically analyzing phase transitions and feature formation dynamics (e.g., Singular Learning Theory).</p>
+                      </div>
+
+                      <div class="ri-subtopic-group">
+                        <div class="ri-group-label">Geometry</div>
+                        <p class="ri-subtopic"><strong>The Geometry of Representations</strong> - Investigating the high-dimensional geometry of feature encoding: the Linear Representation Hypothesis, Superposition (packing N features into M&lt;N dimensions), and the role of Privileged Bases in disentangling representations.</p>
+                      </div>
+
+                      <div class="ri-subtopic-group">
+                        <div class="ri-group-label">Intervention</div>
+                        <p class="ri-subtopic"><strong>Activation Steering &amp; Internals-Influenced Training</strong> - Developing techniques to control model behavior from the inside out: activation steering to clamp specific feature vectors at inference time, and internals-influenced training to regularize internal states during learning - explicitly penalizing deceptive pathways or encouraging disentangled representations.</p>
+                        <p class="ri-subtopic"><strong>Agentic &amp; Temporal Circuit Analysis</strong> - Extending interpretability beyond single-token prediction to understand how models maintain long-horizon state, represent hierarchical goals, and fail when internal plans drift or collapse.</p>
+                      </div>
+
+                      <div class="ri-subtopic-group">
+                        <div class="ri-group-label">Frontiers</div>
+                        <p class="ri-subtopic"><strong>Generative &amp; Dynamics Interpretability</strong> - Extending mechanistic analysis to any architecture where computation unfolds over time or iterative refinement: World Models encoding environmental rules, diffusion and flow-matching processes constructing complex data, and architectures yet to be developed - wherever the question shifts from "what did the model predict?" to "how did it simulate?" - a direction I intend to pursue more deeply.</p>
+                        <p class="ri-subtopic"><strong>Scalable &amp; Next-Generation Methods</strong> - Extending tools like Sparse Autoencoders (SAEs) and researching novel decomposition frameworks with superior fidelity and scalability for interpreting massive models - a core long-term research direction.</p>
+                      </div>
                     </div>
+                  </div>
+                  <div class="ri-sidebar">
+                    <p class="ri-hard-label">Why it's hard</p>
+                    <p class="ri-hard-text">Circuits emerge from gradient descent with no guarantee of modularity or human-legible structure, findings from small models often fail to transfer to larger ones, and there is no ground truth against which to validate a proposed circuit explanation.</p>
                   </div>
                 </div>
               </div>
@@ -161,11 +182,15 @@
           <div class="ri-item">
             <button class="ri-trigger" aria-expanded="false">
               <span class="ri-idx">1.2</span>
-              <span class="ri-name">AI Alignment</span>
+              <div class="ri-name-block">
+                <span class="ri-problem">Align</span>
+                <span class="ri-name">Alignment &amp; Control</span>
+              </div>
               <div class="ri-trigger-right">
                 <div class="ri-tags">
-                  <span class="ri-tag">values</span>
                   <span class="ri-tag">oversight</span>
+                  <span class="ri-tag">IRL</span>
+                  <span class="ri-tag">ELK</span>
                 </div>
                 <svg class="ri-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polyline points="6 9 12 15 18 9"></polyline>
@@ -175,24 +200,18 @@
             <div class="ri-body">
               <div class="ri-body-inner">
                 <div class="ri-body-content">
-                  <p class="ri-desc">
-                    As AI systems grow more capable, ensuring they reliably pursue
-                    <strong>human-intended goals</strong> becomes increasingly critical - and
-                    increasingly difficult. I'm interested in the theoretical and empirical
-                    foundations of alignment: how do we specify what we want, how do we verify
-                    that a model has understood it, and how do we detect when it hasn't?
-                    My work on <strong>selective labels and evaluation bias</strong> is partly
-                    motivated by this: if we cannot faithfully evaluate a model's behavior,
-                    we cannot certify that it is aligned. Mechanistic interpretability and
-                    alignment are deeply connected - understanding internal representations
-                    is a prerequisite for scalable oversight.
-                  </p>
-                  <div class="ri-sidebar">
-                    <p class="ri-sidebar-label">Open Questions</p>
-                    <div class="ri-questions">
-                      <p class="ri-question">How do we evaluate alignment when we can't observe all model behaviors in deployment?</p>
-                      <p class="ri-question">Can mechanistic interpretability inform scalable oversight methods?</p>
+                  <div>
+                    <p class="ri-goal">How do we ensure powerful AI systems reliably act in accordance with human intent and values - even as they become more capable than their supervisors?</p>
+                    <p class="ri-desc">I'm interested in the theoretical and empirical foundations of alignment: how we specify what we want, verify that a model has understood it, and detect when it hasn't. My work on <strong>selective labels and evaluation bias</strong> connects here - if we cannot faithfully evaluate a model's behavior, we cannot certify that it is aligned. Specific interests:</p>
+                    <div class="ri-subtopics">
+                      <p class="ri-subtopic"><strong>Scalable Oversight</strong> - Developing methods for humans to supervise systems smarter than them, including AI-assisted evaluation, Recursive Reward Modeling, and Debate.</p>
+                      <p class="ri-subtopic"><strong>Value Learning &amp; IRL</strong> - Algorithms that infer human preferences by observing behavior, rather than requiring explicit reward specification.</p>
+                      <p class="ri-subtopic"><strong>Eliciting Latent Knowledge (ELK)</strong> - Training models to truthfully report their internal state, even when deception might yield a higher reward.</p>
                     </div>
+                  </div>
+                  <div class="ri-sidebar">
+                    <p class="ri-hard-label">Why it's hard</p>
+                    <p class="ri-hard-text">We cannot enumerate all deployment contexts in advance, so specifying and verifying intended behavior is fundamentally a problem of generalization - which is exactly what makes it so difficult to solve with current evaluation methods.</p>
                   </div>
                 </div>
               </div>
@@ -200,20 +219,19 @@
           </div>
         </div>
 
-        <div class="ri-track">
-          <div class="ri-track-header">
-            <span class="ri-track-roman">II</span>
-            <span class="ri-track-title">Capabilities</span>
-          </div>
-
+        <div class="ri-track-panel" id="ri-panel-capabilities">
           <div class="ri-item">
             <button class="ri-trigger" aria-expanded="false">
               <span class="ri-idx">2.1</span>
-              <span class="ri-name">Generative Models</span>
+              <div class="ri-name-block">
+                <span class="ri-problem">Represent</span>
+                <span class="ri-name">Generative Models, EBMs &amp; Representation Learning</span>
+              </div>
               <div class="ri-trigger-right">
                 <div class="ri-tags">
+                  <span class="ri-tag">EBMs</span>
                   <span class="ri-tag">diffusion</span>
-                  <span class="ri-tag">generation</span>
+                  <span class="ri-tag">SSL</span>
                 </div>
                 <svg class="ri-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polyline points="6 9 12 15 18 9"></polyline>
@@ -223,23 +241,25 @@
             <div class="ri-body">
               <div class="ri-body-inner">
                 <div class="ri-body-content">
-                  <p class="ri-desc">
-                    My primary interest in generative models stems from their role as a core
-                    building block of world models - a model that can generate realistic future
-                    frames, scenes, or states is implicitly learning a structured prior over how
-                    the world evolves. I'm interested in what <strong>generative models actually
-                    learn about world structure</strong>, and whether that structure is rich enough
-                    to support downstream reasoning and planning. Separately, I find generative
-                    models compelling in <strong>AI for science</strong>: their ability to model
-                    complex high-dimensional distributions makes them powerful tools for molecular
-                    design and physical simulation, though this is not a current research focus.
-                  </p>
-                  <div class="ri-sidebar">
-                    <p class="ri-sidebar-label">Open Questions</p>
-                    <div class="ri-questions">
-                      <p class="ri-question">Do generative models learn genuine world structure, or sophisticated interpolation?</p>
-                      <p class="ri-question">How can generative priors improve sample efficiency in scientific discovery settings?</p>
+                  <div>
+                    <p class="ri-goal">How do we move beyond monolithic generation to develop modular, composable systems that learn robust representations and flexibly combine distinct concepts?</p>
+                    <p class="ri-desc">I'm interested in generative models not primarily for their outputs, but for what they reveal about the structure of data - and for their role as a mathematical framework applicable far beyond image synthesis. Specific interests:</p>
+                    <div class="ri-subtopics">
+                      <div class="ri-subtopic-group">
+                        <div class="ri-group-label">Generation</div>
+                        <p class="ri-subtopic"><strong>Energy-Based Models &amp; Compositionality</strong> - Formulating generation as energy minimization to enable flexible combination of independent models and constraints at inference time (e.g., composing separate "object" and "lighting" models).</p>
+                        <p class="ri-subtopic"><strong>Diffusion &amp; Flow Matching</strong> - Leveraging generative modeling to solve inverse problems, model continuous-time dynamics, and treat planning as conditional inference, while advancing the rigorous SDE and ODE mathematical foundations.</p>
+                      </div>
+                      <div class="ri-subtopic-group">
+                        <div class="ri-group-label">Representation</div>
+                        <p class="ri-subtopic"><strong>Self-Supervised Learning</strong> - Learning robust, disentangled representations from unlabeled data via masked modeling and contrastive objectives.</p>
+                        <p class="ri-subtopic"><strong>Structured Representations &amp; Alignment</strong> - Investigating how models can learn combinatorial features that allow for robust generalization and grounding across modalities.</p>
+                      </div>
                     </div>
+                  </div>
+                  <div class="ri-sidebar">
+                    <p class="ri-hard-label">Why it's hard</p>
+                    <p class="ri-hard-text">There is no objective criterion for a "good" representation - one that is optimal for generation may be useless for reasoning, and disentanglement is extremely difficult to guarantee or even measure rigorously.</p>
                   </div>
                 </div>
               </div>
@@ -249,11 +269,15 @@
           <div class="ri-item">
             <button class="ri-trigger" aria-expanded="false">
               <span class="ri-idx">2.2</span>
-              <span class="ri-name">World Models for Reasoning</span>
+              <div class="ri-name-block">
+                <span class="ri-problem">Reason</span>
+                <span class="ri-name">Reasoning &amp; Cognitive Capabilities</span>
+              </div>
               <div class="ri-trigger-right">
                 <div class="ri-tags">
-                  <span class="ri-tag">reasoning</span>
-                  <span class="ri-tag">cognition</span>
+                  <span class="ri-tag">abstraction</span>
+                  <span class="ri-tag">causality</span>
+                  <span class="ri-tag">OOD</span>
                 </div>
                 <svg class="ri-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polyline points="6 9 12 15 18 9"></polyline>
@@ -263,23 +287,25 @@
             <div class="ri-body">
               <div class="ri-body-inner">
                 <div class="ri-body-content">
-                  <p class="ri-desc">
-                    Current language models can produce impressively reasoned text, yet there
-                    is genuine debate about whether they <em>reason</em> or pattern-match.
-                    I believe <strong>internal world models</strong> - learned representations
-                    that support counterfactual simulation - are a plausible path toward
-                    genuine reasoning. A model that can mentally "run" a scenario before
-                    committing to an answer is doing something qualitatively different from
-                    next-token prediction. I'm interested in what architectural and training
-                    conditions give rise to such internal models, and how we might
-                    measure them rigorously.
-                  </p>
-                  <div class="ri-sidebar">
-                    <p class="ri-sidebar-label">Open Questions</p>
-                    <div class="ri-questions">
-                      <p class="ri-question">What training conditions give rise to internal world models that support counterfactual simulation?</p>
-                      <p class="ri-question">How do we measure whether a model is reasoning vs. sophisticated pattern-matching?</p>
+                  <div>
+                    <p class="ri-goal">How do we build systems that genuinely reason - abstracting, deducing, and generalizing - rather than pattern-matching?</p>
+                    <p class="ri-desc">Reasoning is distinct from representation: a model can have excellent embeddings and still fail at multi-step deduction. I'm interested in what it takes to go from statistical regularity to structured inference. Specific interests:</p>
+                    <div class="ri-subtopics">
+                      <div class="ri-subtopic-group">
+                        <div class="ri-group-label">Abstraction</div>
+                        <p class="ri-subtopic"><strong>Abstraction &amp; Concept Formation</strong> - How models lift specific examples into generalizable concepts and apply them via analogical reasoning.</p>
+                        <p class="ri-subtopic"><strong>Chain-of-Thought &amp; Self-Correction</strong> - Mechanisms for generating, critiquing, and refining internal reasoning traces before committing to an answer.</p>
+                      </div>
+                      <div class="ri-subtopic-group">
+                        <div class="ri-group-label">Robustness</div>
+                        <p class="ri-subtopic"><strong>Causal Reasoning</strong> - Moving beyond correlation to model cause-and-effect, enabling prediction of the downstream effects of interventions.</p>
+                        <p class="ri-subtopic"><strong>OOD Generalization</strong> - Ensuring reasoning stays robust when input distributions shift significantly from training.</p>
+                      </div>
                     </div>
+                  </div>
+                  <div class="ri-sidebar">
+                    <p class="ri-hard-label">Why it's hard</p>
+                    <p class="ri-hard-text">There is no agreed-upon benchmark that separates genuine reasoning from sophisticated pattern-matching - making it very difficult to know whether apparent progress reflects real improvement or benchmark exploitation.</p>
                   </div>
                 </div>
               </div>
@@ -289,11 +315,15 @@
           <div class="ri-item">
             <button class="ri-trigger" aria-expanded="false">
               <span class="ri-idx">2.3</span>
-              <span class="ri-name">Planning &amp; Embodied Intelligence</span>
+              <div class="ri-name-block">
+                <span class="ri-problem">Predict</span>
+                <span class="ri-name">World Models &amp; Predictive Learning</span>
+              </div>
               <div class="ri-trigger-right">
                 <div class="ri-tags">
-                  <span class="ri-tag">robotics</span>
-                  <span class="ri-tag">planning</span>
+                  <span class="ri-tag">dynamics</span>
+                  <span class="ri-tag">simulation</span>
+                  <span class="ri-tag">MBRL</span>
                 </div>
                 <svg class="ri-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polyline points="6 9 12 15 18 9"></polyline>
@@ -303,23 +333,25 @@
             <div class="ri-body">
               <div class="ri-body-inner">
                 <div class="ri-body-content">
-                  <p class="ri-desc">
-                    World models become most powerful when used for <strong>planning</strong>:
-                    an agent that can mentally simulate the consequences of its actions before
-                    taking them can reason about long-horizon goals in a way that reactive
-                    policies cannot. I'm interested in how learned world models can support
-                    more <strong>sample-efficient and generalizable robot policies</strong>,
-                    and what the demands of embodied intelligence reveal about the limits
-                    of current model architectures. Robotics is a demanding testbed precisely
-                    because the real world does not forgive distributional shift - making it
-                    an ideal stress-test for whether a world model is actually robust.
-                  </p>
-                  <div class="ri-sidebar">
-                    <p class="ri-sidebar-label">Open Questions</p>
-                    <div class="ri-questions">
-                      <p class="ri-question">How can learned world models support long-horizon planning in continuous action spaces?</p>
-                      <p class="ri-question">What does robotic failure reveal about the gaps in world model representations?</p>
+                  <div>
+                    <p class="ri-goal">How do we build internal simulations of the world rich enough to support planning and counterfactual reasoning?</p>
+                    <p class="ri-desc">Representation and reasoning are necessary but insufficient - an agent that can't anticipate consequences can't plan. World models provide that bridge, encoding not just what the world looks like, but <em>how it changes</em>. Specific interests:</p>
+                    <div class="ri-subtopics">
+                      <div class="ri-subtopic-group">
+                        <div class="ri-group-label">Representation</div>
+                        <p class="ri-subtopic"><strong>Latent Dynamics Models</strong> - Learning efficient abstract representations of world evolution (e.g., Dreamer-style architectures).</p>
+                        <p class="ri-subtopic"><strong>Video-as-Simulation</strong> - Treating video generation as a path to learning intuitive physics and object permanence, not just visual fidelity.</p>
+                      </div>
+                      <div class="ri-subtopic-group">
+                        <div class="ri-group-label">Agency</div>
+                        <p class="ri-subtopic"><strong>Counterfactual Reasoning</strong> - Giving models the ability to imagine "what would have happened" under a different action or condition.</p>
+                        <p class="ri-subtopic"><strong>Model-Based RL</strong> - Using learned world models to plan policies entirely inside mental simulation before acting.</p>
+                      </div>
                     </div>
+                  </div>
+                  <div class="ri-sidebar">
+                    <p class="ri-hard-label">Why it's hard</p>
+                    <p class="ri-hard-text">A world model must compress the full complexity of physical reality into a latent space compact enough to simulate efficiently, yet rich enough to support accurate long-horizon prediction - and errors compound rapidly.</p>
                   </div>
                 </div>
               </div>
@@ -329,11 +361,14 @@
           <div class="ri-item">
             <button class="ri-trigger" aria-expanded="false">
               <span class="ri-idx">2.4</span>
-              <span class="ri-name">World Models &amp; Spatial Intelligence</span>
+              <div class="ri-name-block">
+                <span class="ri-problem">Act</span>
+                <span class="ri-name">Embodied Intelligence &amp; Robotics</span>
+              </div>
               <div class="ri-trigger-right">
                 <div class="ri-tags">
-                  <span class="ri-tag">3D</span>
-                  <span class="ri-tag">geometry</span>
+                  <span class="ri-tag">sim-to-real</span>
+                  <span class="ri-tag">manipulation</span>
                   <span class="ri-tag">perception</span>
                 </div>
                 <svg class="ri-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -344,24 +379,25 @@
             <div class="ri-body">
               <div class="ri-body-inner">
                 <div class="ri-body-content">
-                  <p class="ri-desc">
-                    The physical world is fundamentally spatial - objects persist across
-                    viewpoints, move according to physical laws, and occupy structured 3D
-                    geometry. I'm interested in AI systems that form <strong>spatial world
-                    models</strong>: representations that encode the geometry, layout, and
-                    dynamics of scenes in ways that support robust perception and
-                    generalization. I follow work in this space closely, including research
-                    from <strong>World Labs</strong> and others pushing toward large-scale
-                    3D and 4D world models trained from video - and I'm drawn to the
-                    question of what inductive biases allow models to acquire rich spatial
-                    understanding from inherently 2D observations.
-                  </p>
-                  <div class="ri-sidebar">
-                    <p class="ri-sidebar-label">Open Questions</p>
-                    <div class="ri-questions">
-                      <p class="ri-question">What inductive biases allow models to acquire 3D geometric understanding from 2D video?</p>
-                      <p class="ri-question">How does spatial world model quality correlate with downstream navigation performance?</p>
+                  <div>
+                    <p class="ri-goal">How do we ground intelligence in the physical world - creating agents that interact robustly with complex, unstructured environments?</p>
+                    <p class="ri-desc">The physical world is the ultimate stress-test: it is continuous, high-dimensional, and unforgiving. Policies that succeed in simulation fail on hardware. Robotics is compelling precisely because it makes hand-wavy claims about generalization impossible - either the robot picks up the object or it doesn't. Specific interests:</p>
+                    <div class="ri-subtopics">
+                      <div class="ri-subtopic-group">
+                        <div class="ri-group-label">Control</div>
+                        <p class="ri-subtopic"><strong>Sim-to-Real Transfer</strong> - Training robust policies in high-speed physics simulations that generalize zero-shot to real hardware.</p>
+                        <p class="ri-subtopic"><strong>Visuomotor Control</strong> - Mapping raw visual observations directly to motor actions for fine-grained, end-to-end learned tasks.</p>
+                      </div>
+                      <div class="ri-subtopic-group">
+                        <div class="ri-group-label">Capability</div>
+                        <p class="ri-subtopic"><strong>Dexterous Manipulation</strong> - Enabling multi-fingered hands to handle objects with human-like precision and adaptability.</p>
+                        <p class="ri-subtopic"><strong>Active Perception</strong> - Agents that move to gather information, actively reducing uncertainty about their surroundings.</p>
+                      </div>
                     </div>
+                  </div>
+                  <div class="ri-sidebar">
+                    <p class="ri-hard-label">Why it's hard</p>
+                    <p class="ri-hard-text">The real world does not offer a reset button - distributional shift between simulation and hardware, sensor noise, and contact dynamics combine to make zero-shot generalization from learned policies extremely brittle.</p>
                   </div>
                 </div>
               </div>

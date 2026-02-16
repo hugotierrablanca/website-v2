@@ -65,8 +65,9 @@
           return;
         }
 
+        const offset = target.classList.contains("anchor") ? 0 : 72;
         window.scrollTo({
-          top: target.offsetTop - 72,
+          top: Math.max(0, target.offsetTop - offset),
           behavior: "smooth",
         });
       });
@@ -233,7 +234,28 @@
   }
 
   function initResearchInterestsAccordion() {
+    const tabBtns = Array.from(document.querySelectorAll(".ri-tab-btn"));
+    const panels = Array.from(document.querySelectorAll(".ri-track-panel"));
     const triggers = Array.from(document.querySelectorAll(".ri-trigger"));
+
+    if (tabBtns.length > 0 && panels.length > 0) {
+      tabBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const target = btn.dataset.track;
+          const panel = document.getElementById(`ri-panel-${target}`);
+          if (!panel) {
+            return;
+          }
+
+          tabBtns.forEach((tabBtn) => tabBtn.classList.remove("active"));
+          panels.forEach((panelEl) => panelEl.classList.remove("active"));
+
+          btn.classList.add("active");
+          panel.classList.add("active");
+        });
+      });
+    }
+
     if (triggers.length === 0) {
       return;
     }
@@ -241,14 +263,14 @@
     triggers.forEach((trigger) => {
       trigger.addEventListener("click", () => {
         const item = trigger.closest(".ri-item");
-        const track = item ? item.closest(".ri-track") : null;
-        if (!item || !track) {
+        const panel = trigger.closest(".ri-track-panel");
+        if (!item || !panel) {
           return;
         }
 
         const isOpen = item.classList.contains("open");
 
-        track.querySelectorAll(".ri-item").forEach((el) => {
+        panel.querySelectorAll(".ri-item").forEach((el) => {
           el.classList.remove("open");
           const elTrigger = el.querySelector(".ri-trigger");
           if (elTrigger) {
