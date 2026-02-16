@@ -3,6 +3,8 @@
 
   const navLinks = Array.from(document.querySelectorAll("#nav a"));
   const sections = ["home", "interests", "research", "news", "misc"];
+  const themeToggle = document.getElementById("theme-toggle");
+  const THEME_STORAGE_KEY = "preferred-theme";
 
   const yearRangeMin = document.getElementById("year-range-min");
   const yearRangeMax = document.getElementById("year-range-max");
@@ -83,6 +85,65 @@
         window.scrollTo({ top: 0, behavior: "smooth" });
       });
     }
+  }
+
+  function getStoredTheme() {
+    try {
+      return localStorage.getItem(THEME_STORAGE_KEY);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function setStoredTheme(theme) {
+    try {
+      localStorage.setItem(THEME_STORAGE_KEY, theme);
+    } catch (error) {
+      // Ignore storage errors.
+    }
+  }
+
+  function applyTheme(theme) {
+    const useDark = theme === "dark";
+    document.body.classList.toggle("dark-mode", useDark);
+
+    if (themeToggle) {
+      themeToggle.setAttribute("aria-pressed", useDark ? "true" : "false");
+      if (useDark) {
+        themeToggle.setAttribute("aria-label", "Switch to light mode");
+        themeToggle.setAttribute("title", "Switch to light mode");
+      } else {
+        themeToggle.setAttribute("aria-label", "Switch to dark mode");
+        themeToggle.setAttribute("title", "Switch to dark mode");
+      }
+    }
+  }
+
+  function initThemeToggle() {
+    if (!themeToggle) {
+      return;
+    }
+
+    const storedTheme = getStoredTheme();
+    const isStoredThemeValid = storedTheme === "light" || storedTheme === "dark";
+    const prefersDark = window.matchMedia
+      && window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    const initialTheme = isStoredThemeValid
+      ? storedTheme
+      : prefersDark
+      ? "dark"
+      : "light";
+
+    applyTheme(initialTheme);
+
+    themeToggle.addEventListener("click", () => {
+      const nextTheme = document.body.classList.contains("dark-mode")
+        ? "light"
+        : "dark";
+      applyTheme(nextTheme);
+      setStoredTheme(nextTheme);
+    });
   }
 
   function updateYearRangeUI() {
@@ -601,6 +662,7 @@
   }
 
   function init() {
+    initThemeToggle();
     initNeuralNetworkBackground();
     initSmoothScroll();
     initLiveStatus();
