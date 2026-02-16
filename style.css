@@ -409,6 +409,11 @@ p.tagline {
   transition: 0.3s;
 }
 
+.icons a[aria-label="CV"] svg {
+  width: 1.34rem;
+  height: 1.34rem;
+}
+
 body.dark-mode .icons svg {
   color: #8ca6c8;
 }
@@ -606,6 +611,63 @@ body.dark-mode #year-range-wrap .year-track {
   position: relative;
   z-index: 8;
   margin-top: 2.6rem;
+}
+
+body.dark-mode #research-section #filters {
+  background: rgba(17, 33, 55, 0.9);
+  border: 1px solid #2d4c73;
+}
+
+body.dark-mode #research-section #slider-contain span,
+body.dark-mode #research-section #filters b {
+  color: #d4e6ff;
+}
+
+body.dark-mode #research-section #tag-select {
+  background: transparent;
+  color: #d4e6ff;
+  border-bottom-color: #4b6890;
+}
+
+body.dark-mode #research-section #tag-select:focus,
+body.dark-mode #research-section #tag-select:hover {
+  border-bottom-color: #82bbff;
+}
+
+body.dark-mode #research-section .pub {
+  background: rgba(17, 34, 58, 0.94);
+  border-color: #36577f;
+}
+
+body.dark-mode #research-section .pub:hover {
+  box-shadow: 0 0 26px rgba(84, 156, 238, 0.28);
+}
+
+body.dark-mode #research-section .placeholder {
+  background: linear-gradient(135deg, rgba(121, 176, 231, 0.28), rgba(39, 72, 129, 0.36));
+}
+
+body.dark-mode #research-section .pub h3 {
+  color: #ecf4ff;
+}
+
+body.dark-mode #research-section .pub .author,
+body.dark-mode #research-section .pub .summary {
+  color: #bfd4f1;
+}
+
+body.dark-mode #research-section .pub .venue,
+body.dark-mode #research-section .pub .card-tag {
+  color: #a6c0e3;
+}
+
+body.dark-mode #research-section .pub .link {
+  background-color: #183153;
+  color: #bfd4f1;
+}
+
+body.dark-mode #research-section .pub .link.disabled {
+  opacity: 0.72;
 }
 
 #pubs {
