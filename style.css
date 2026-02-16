@@ -30,6 +30,7 @@
   --blue-gradient-dark: #0d2f77;
   --blue-gradient-mid: #2364d2;
   --blue-gradient-light: #82d6ff;
+  --page-bg: #fefefe;
 
   --light-gray: #f7f8fb;
   --gray: #d6dce5;
@@ -51,7 +52,7 @@ body {
   font-family: "Inconsolata", "SFMono-Regular", Menlo, monospace;
   color: var(--black);
   line-height: 1.55;
-  background: #ffffff;
+  background: var(--page-bg);
   overflow-x: hidden;
 }
 
@@ -152,7 +153,7 @@ a:hover {
   background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(10px);
   padding: 1rem;
-  text-transform: lowercase;
+  text-transform: none;
 }
 
 #nav::after {
@@ -351,8 +352,14 @@ section h2::before {
   color: var(--dark-gray);
 }
 
+#research-section {
+  position: relative;
+  z-index: 8;
+}
+
 #pubs {
   margin-top: 1rem;
+  overflow: hidden;
 }
 
 .pub-contain {
@@ -502,11 +509,19 @@ section h2::before {
   margin-top: 0.7rem;
 }
 
+#news-section {
+  position: relative;
+  z-index: 12;
+  background: var(--page-bg);
+}
+
 #update-contain .update {
   display: grid;
   grid-template-columns: 80px auto;
   gap: 2rem;
   margin-top: 0.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 #update-contain .update:not(:last-child) {
@@ -532,6 +547,11 @@ section h2::before {
   color: var(--accent);
   padding: 0.15rem 0.45rem;
   border-radius: 999px;
+}
+
+#update-contain .links,
+#update-contain .link {
+  display: none !important;
 }
 
 #fun-cards {
