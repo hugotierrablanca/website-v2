@@ -289,6 +289,17 @@
     });
   }
 
+  function positionLiveStatusUnderNav() {
+    const nav = document.getElementById("nav");
+    const statusWrap = document.getElementById("nav-live-status-wrap");
+    if (!nav || !statusWrap) {
+      return;
+    }
+
+    const navBottom = nav.getBoundingClientRect().bottom;
+    statusWrap.style.top = `${Math.round(navBottom + 2)}px`;
+  }
+
   async function fetchJson(url) {
     const response = await fetch(url, { method: "GET" });
     if (!response.ok) {
@@ -603,11 +614,14 @@
   function init() {
     initNeuralNetworkBackground();
     initSmoothScroll();
+    positionLiveStatusUnderNav();
     initLiveStatus();
     initPublicationControls();
     initNewsControls();
     initResearchInterestsAccordion();
 
+    window.addEventListener("resize", positionLiveStatusUnderNav);
+    window.addEventListener("load", positionLiveStatusUnderNav);
     window.addEventListener("scroll", updateActiveNav);
     updateActiveNav();
   }
