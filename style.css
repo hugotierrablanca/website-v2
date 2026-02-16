@@ -140,7 +140,7 @@ a:hover {
 #app {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 8.2rem 2rem 2rem;
+  padding: 5.4rem 2rem 2rem;
   position: relative;
   z-index: 10;
 }
@@ -174,18 +174,13 @@ a:hover {
 }
 
 #nav-live-status-wrap {
-  position: fixed;
-  top: var(--nav-status-top, 3.4rem);
-  left: 0;
+  position: relative;
   width: 100%;
-  z-index: 19;
-  pointer-events: none;
+  margin-bottom: 0.5rem;
 }
 
 #nav-live-status-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  width: 100%;
   display: flex;
   justify-content: flex-end;
 }
@@ -1457,7 +1452,7 @@ section h2::before {
 
 @media screen and (max-width: 575px) {
   #app {
-    padding: 8rem 1rem 1.5rem;
+    padding: 5.2rem 1rem 1.5rem;
   }
 
   .nav-inner {
