@@ -358,15 +358,15 @@ section h2::before {
 #year-range-max::-webkit-slider-thumb {
   -webkit-appearance: none;
   pointer-events: auto;
-  width: 16px;
-  height: 16px;
-  margin-top: -5px;
+  width: 8px;
+  height: 8px;
+  margin-top: -1px;
   border-radius: 50%;
   border: none;
   background:
     radial-gradient(circle, #ffffff 46%, transparent 48%),
     linear-gradient(145deg, var(--blue-gradient-light), var(--blue-gradient-dark));
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
 }
 
 #year-range-min::-moz-range-track,
@@ -379,14 +379,14 @@ section h2::before {
 #year-range-min::-moz-range-thumb,
 #year-range-max::-moz-range-thumb {
   pointer-events: auto;
-  width: 16px;
-  height: 16px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   border: none;
   background:
     radial-gradient(circle, #ffffff 46%, transparent 48%),
     linear-gradient(145deg, var(--blue-gradient-light), var(--blue-gradient-dark));
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
 }
 
 #slider-contain span,
@@ -618,7 +618,7 @@ section h2::before {
   border: none;
   background: transparent;
   font-family: monospace;
-  text-transform: lowercase;
+  text-transform: none;
   color: var(--dark-gray);
   cursor: pointer;
   padding: 0.2rem 0.4rem;
