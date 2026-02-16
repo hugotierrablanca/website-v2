@@ -274,7 +274,7 @@ p.tagline {
 }
 
 #live-date {
-  font-size: 1.05rem;
+  font-size: 0.98rem;
   color: var(--black);
 }
 
@@ -334,6 +334,10 @@ p.tagline {
 
 section {
   margin-top: 4rem;
+}
+
+#home {
+  margin-top: 0;
 }
 
 section h2 {
