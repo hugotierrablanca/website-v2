@@ -97,6 +97,282 @@
         </div>
       </section>
 
+      <div class="ri-section">
+        <p class="ri-eyebrow">Research Interests</p>
+
+        <p class="ri-intro">
+          My research spans <strong>AI safety</strong> and <strong>capabilities</strong>,
+          with a focus on building AI systems that are both more powerful and more
+          trustworthy. On the safety side, I study how neural networks represent and
+          process information, and how to develop rigorous evaluation frameworks for
+          high-stakes systems. On the capabilities side, I am drawn to world models
+          as a path toward genuine reasoning, spatial understanding, and embodied
+          intelligence.
+        </p>
+        <p class="ri-order-note">* interests listed in no particular order within each track</p>
+
+        <div class="ri-track">
+          <div class="ri-track-header">
+            <span class="ri-track-roman">I</span>
+            <span class="ri-track-title">AI Safety</span>
+          </div>
+
+          <div class="ri-item">
+            <button class="ri-trigger" aria-expanded="false">
+              <span class="ri-idx">1.1</span>
+              <span class="ri-name">Mechanistic Interpretability</span>
+              <div class="ri-trigger-right">
+                <div class="ri-tags">
+                  <span class="ri-tag">circuits</span>
+                  <span class="ri-tag">representations</span>
+                </div>
+                <svg class="ri-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </button>
+            <div class="ri-body">
+              <div class="ri-body-inner">
+                <div class="ri-body-content">
+                  <p class="ri-desc">
+                    I'm interested in reverse-engineering the internal computations of neural
+                    networks - understanding how models store knowledge, form representations,
+                    and route information through <strong>circuits</strong>. Rather than treating
+                    models as black boxes, mechanistic interpretability asks <em>how</em> a
+                    specific behavior is computed, tracing it back to individual components and
+                    their interactions. My current work connects here through
+                    <strong>data attribution and influence functions</strong>: understanding why
+                    a model produces a given output by identifying which training examples most
+                    shaped that behavior.
+                  </p>
+                  <div class="ri-sidebar">
+                    <p class="ri-sidebar-label">Open Questions</p>
+                    <div class="ri-questions">
+                      <p class="ri-question">Can influence functions reliably attribute model behavior to training data at scale?</p>
+                      <p class="ri-question">Do circuits identified in small models transfer to larger architectures?</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ri-item">
+            <button class="ri-trigger" aria-expanded="false">
+              <span class="ri-idx">1.2</span>
+              <span class="ri-name">AI Alignment</span>
+              <div class="ri-trigger-right">
+                <div class="ri-tags">
+                  <span class="ri-tag">values</span>
+                  <span class="ri-tag">oversight</span>
+                </div>
+                <svg class="ri-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </button>
+            <div class="ri-body">
+              <div class="ri-body-inner">
+                <div class="ri-body-content">
+                  <p class="ri-desc">
+                    As AI systems grow more capable, ensuring they reliably pursue
+                    <strong>human-intended goals</strong> becomes increasingly critical - and
+                    increasingly difficult. I'm interested in the theoretical and empirical
+                    foundations of alignment: how do we specify what we want, how do we verify
+                    that a model has understood it, and how do we detect when it hasn't?
+                    My work on <strong>selective labels and evaluation bias</strong> is partly
+                    motivated by this: if we cannot faithfully evaluate a model's behavior,
+                    we cannot certify that it is aligned. Mechanistic interpretability and
+                    alignment are deeply connected - understanding internal representations
+                    is a prerequisite for scalable oversight.
+                  </p>
+                  <div class="ri-sidebar">
+                    <p class="ri-sidebar-label">Open Questions</p>
+                    <div class="ri-questions">
+                      <p class="ri-question">How do we evaluate alignment when we can't observe all model behaviors in deployment?</p>
+                      <p class="ri-question">Can mechanistic interpretability inform scalable oversight methods?</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ri-track">
+          <div class="ri-track-header">
+            <span class="ri-track-roman">II</span>
+            <span class="ri-track-title">Capabilities</span>
+          </div>
+
+          <div class="ri-item">
+            <button class="ri-trigger" aria-expanded="false">
+              <span class="ri-idx">2.1</span>
+              <span class="ri-name">Generative Models</span>
+              <div class="ri-trigger-right">
+                <div class="ri-tags">
+                  <span class="ri-tag">diffusion</span>
+                  <span class="ri-tag">generation</span>
+                </div>
+                <svg class="ri-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </button>
+            <div class="ri-body">
+              <div class="ri-body-inner">
+                <div class="ri-body-content">
+                  <p class="ri-desc">
+                    My primary interest in generative models stems from their role as a core
+                    building block of world models - a model that can generate realistic future
+                    frames, scenes, or states is implicitly learning a structured prior over how
+                    the world evolves. I'm interested in what <strong>generative models actually
+                    learn about world structure</strong>, and whether that structure is rich enough
+                    to support downstream reasoning and planning. Separately, I find generative
+                    models compelling in <strong>AI for science</strong>: their ability to model
+                    complex high-dimensional distributions makes them powerful tools for molecular
+                    design and physical simulation, though this is not a current research focus.
+                  </p>
+                  <div class="ri-sidebar">
+                    <p class="ri-sidebar-label">Open Questions</p>
+                    <div class="ri-questions">
+                      <p class="ri-question">Do generative models learn genuine world structure, or sophisticated interpolation?</p>
+                      <p class="ri-question">How can generative priors improve sample efficiency in scientific discovery settings?</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ri-item">
+            <button class="ri-trigger" aria-expanded="false">
+              <span class="ri-idx">2.2</span>
+              <span class="ri-name">World Models for Reasoning</span>
+              <div class="ri-trigger-right">
+                <div class="ri-tags">
+                  <span class="ri-tag">reasoning</span>
+                  <span class="ri-tag">cognition</span>
+                </div>
+                <svg class="ri-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </button>
+            <div class="ri-body">
+              <div class="ri-body-inner">
+                <div class="ri-body-content">
+                  <p class="ri-desc">
+                    Current language models can produce impressively reasoned text, yet there
+                    is genuine debate about whether they <em>reason</em> or pattern-match.
+                    I believe <strong>internal world models</strong> - learned representations
+                    that support counterfactual simulation - are a plausible path toward
+                    genuine reasoning. A model that can mentally "run" a scenario before
+                    committing to an answer is doing something qualitatively different from
+                    next-token prediction. I'm interested in what architectural and training
+                    conditions give rise to such internal models, and how we might
+                    measure them rigorously.
+                  </p>
+                  <div class="ri-sidebar">
+                    <p class="ri-sidebar-label">Open Questions</p>
+                    <div class="ri-questions">
+                      <p class="ri-question">What training conditions give rise to internal world models that support counterfactual simulation?</p>
+                      <p class="ri-question">How do we measure whether a model is reasoning vs. sophisticated pattern-matching?</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ri-item">
+            <button class="ri-trigger" aria-expanded="false">
+              <span class="ri-idx">2.3</span>
+              <span class="ri-name">Planning &amp; Embodied Intelligence</span>
+              <div class="ri-trigger-right">
+                <div class="ri-tags">
+                  <span class="ri-tag">robotics</span>
+                  <span class="ri-tag">planning</span>
+                </div>
+                <svg class="ri-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </button>
+            <div class="ri-body">
+              <div class="ri-body-inner">
+                <div class="ri-body-content">
+                  <p class="ri-desc">
+                    World models become most powerful when used for <strong>planning</strong>:
+                    an agent that can mentally simulate the consequences of its actions before
+                    taking them can reason about long-horizon goals in a way that reactive
+                    policies cannot. I'm interested in how learned world models can support
+                    more <strong>sample-efficient and generalizable robot policies</strong>,
+                    and what the demands of embodied intelligence reveal about the limits
+                    of current model architectures. Robotics is a demanding testbed precisely
+                    because the real world does not forgive distributional shift - making it
+                    an ideal stress-test for whether a world model is actually robust.
+                  </p>
+                  <div class="ri-sidebar">
+                    <p class="ri-sidebar-label">Open Questions</p>
+                    <div class="ri-questions">
+                      <p class="ri-question">How can learned world models support long-horizon planning in continuous action spaces?</p>
+                      <p class="ri-question">What does robotic failure reveal about the gaps in world model representations?</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ri-item">
+            <button class="ri-trigger" aria-expanded="false">
+              <span class="ri-idx">2.4</span>
+              <span class="ri-name">World Models &amp; Spatial Intelligence</span>
+              <div class="ri-trigger-right">
+                <div class="ri-tags">
+                  <span class="ri-tag">3D</span>
+                  <span class="ri-tag">geometry</span>
+                  <span class="ri-tag">perception</span>
+                </div>
+                <svg class="ri-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </button>
+            <div class="ri-body">
+              <div class="ri-body-inner">
+                <div class="ri-body-content">
+                  <p class="ri-desc">
+                    The physical world is fundamentally spatial - objects persist across
+                    viewpoints, move according to physical laws, and occupy structured 3D
+                    geometry. I'm interested in AI systems that form <strong>spatial world
+                    models</strong>: representations that encode the geometry, layout, and
+                    dynamics of scenes in ways that support robust perception and
+                    generalization. I follow work in this space closely, including research
+                    from <strong>World Labs</strong> and others pushing toward large-scale
+                    3D and 4D world models trained from video - and I'm drawn to the
+                    question of what inductive biases allow models to acquire rich spatial
+                    understanding from inherently 2D observations.
+                  </p>
+                  <div class="ri-sidebar">
+                    <p class="ri-sidebar-label">Open Questions</p>
+                    <div class="ri-questions">
+                      <p class="ri-question">What inductive biases allow models to acquire 3D geometric understanding from 2D video?</p>
+                      <p class="ri-question">How does spatial world model quality correlate with downstream navigation performance?</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="ri-footer">
+          I am actively looking for PhD positions bridging safety and capabilities research - feel free to reach out.
+        </p>
+      </div>
+
       <section id="research-section" class="fade-in delay-1">
         <div class="anchor" id="research"></div>
         <h2>Research Highlights</h2>

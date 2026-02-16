@@ -232,6 +232,38 @@
     renderNews();
   }
 
+  function initResearchInterestsAccordion() {
+    const triggers = Array.from(document.querySelectorAll(".ri-trigger"));
+    if (triggers.length === 0) {
+      return;
+    }
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const item = trigger.closest(".ri-item");
+        const track = item ? item.closest(".ri-track") : null;
+        if (!item || !track) {
+          return;
+        }
+
+        const isOpen = item.classList.contains("open");
+
+        track.querySelectorAll(".ri-item").forEach((el) => {
+          el.classList.remove("open");
+          const elTrigger = el.querySelector(".ri-trigger");
+          if (elTrigger) {
+            elTrigger.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        if (!isOpen) {
+          item.classList.add("open");
+          trigger.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
+  }
+
   function initNeuralNetworkBackground() {
     const canvas = document.getElementById("neural-network-bg");
     if (!canvas) {
@@ -453,6 +485,7 @@
     initSmoothScroll();
     initPublicationControls();
     initNewsControls();
+    initResearchInterestsAccordion();
 
     window.addEventListener("scroll", updateActiveNav);
     updateActiveNav();

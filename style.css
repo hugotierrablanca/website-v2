@@ -874,6 +874,286 @@ section h2::before {
   }
 }
 
+/* ================================================
+   RESEARCH INTERESTS SECTION
+   ================================================ */
+
+.ri-section {
+  width: 100%;
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 64px 0 72px;
+  font-family: 'Inconsolata', monospace;
+}
+
+/* Eyebrow label */
+.ri-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--med-gray);
+  margin-bottom: 16px;
+}
+
+/* Section intro blurb */
+.ri-intro {
+  font-size: 15.5px;
+  line-height: 1.72;
+  color: var(--dark-gray);
+  margin-bottom: 12px;
+  max-width: 660px;
+}
+
+/* "No particular order" note, placed right below intro */
+.ri-order-note {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--med-gray);
+  opacity: 0.75;
+  margin-bottom: 52px;
+  font-style: italic;
+}
+
+/* Track container */
+.ri-track {
+  margin-bottom: 48px;
+}
+
+/* Track header
+   Uses the site's main horizontal gradient as a decorative bottom border.
+   Achieved by layering a gradient pseudo-element under the header row.
+*/
+.ri-track-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 12px;
+  margin-bottom: 0;
+  position: relative;
+}
+
+.ri-track-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, var(--blue-gradient-light), var(--blue-gradient-dark));
+}
+
+.ri-track-roman {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--light-med-accent);
+}
+
+.ri-track-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: -webkit-linear-gradient(45deg, var(--blue-gradient-light), var(--blue-gradient-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Accordion item */
+.ri-item {
+  border-bottom: 1px solid var(--gray);
+  position: relative;
+}
+
+/* Left accent bar - shows gradient stripe on open item */
+.ri-item::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: transparent;
+  transition: background 0.22s ease;
+}
+
+.ri-item.open::before {
+  background: linear-gradient(180deg, var(--blue-gradient-light), var(--blue-gradient-dark));
+}
+
+/* Trigger button */
+.ri-trigger {
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 17px 0;
+  display: grid;
+  grid-template-columns: 34px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  font-family: 'Inconsolata', monospace;
+}
+
+.ri-idx {
+  font-size: 10px;
+  letter-spacing: 0.05em;
+  color: var(--gray);
+  padding-top: 1px;
+}
+
+.ri-item.open .ri-idx {
+  color: var(--light-med-accent);
+}
+
+.ri-name {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--dark-gray);
+  line-height: 1.25;
+  transition: color 0.18s;
+}
+
+.ri-item.open .ri-name,
+.ri-trigger:hover .ri-name {
+  color: var(--black);
+}
+
+/* Trigger right side: tags + chevron */
+.ri-trigger-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ri-tags {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.ri-tag {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 2px;
+  background: var(--light-accent);
+  color: var(--med-accent);
+  border: 1px solid var(--light-med-accent);
+  white-space: nowrap;
+  transition: background 0.18s, color 0.18s;
+}
+
+.ri-item.open .ri-tag {
+  background: var(--light-med-accent);
+  color: var(--accent);
+  border-color: var(--med-accent);
+}
+
+.ri-chevron {
+  width: 13px;
+  height: 13px;
+  color: var(--gray);
+  flex-shrink: 0;
+  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s;
+}
+
+.ri-item.open .ri-chevron {
+  transform: rotate(180deg);
+  color: var(--med-accent);
+}
+
+/* Expandable body - grid trick for smooth animation */
+.ri-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ri-body-inner {
+  overflow: hidden;
+}
+
+.ri-item.open .ri-body {
+  grid-template-rows: 1fr;
+}
+
+/* Expanded content layout */
+.ri-body-content {
+  display: grid;
+  grid-template-columns: 1fr 190px;
+  gap: 28px;
+  padding: 4px 0 26px 46px;
+}
+
+.ri-desc {
+  font-size: 13.5px;
+  line-height: 1.78;
+  color: var(--med-gray);
+}
+
+.ri-desc strong {
+  color: var(--dark-gray);
+  font-weight: 600;
+}
+
+/* Sidebar: Open Questions */
+.ri-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ri-sidebar-label {
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--light-med-accent);
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--light-accent);
+}
+
+.ri-questions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ri-question {
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: var(--med-gray);
+  padding-left: 10px;
+  border-left: 1.5px solid var(--light-med-accent);
+}
+
+/* Footer note */
+.ri-footer {
+  margin-top: 8px;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--med-gray);
+  opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 580px) {
+  .ri-body-content {
+    grid-template-columns: 1fr;
+    padding-left: 0;
+    gap: 16px;
+  }
+
+  .ri-tags {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 1100px) {
   .pub-contain {
     grid-template-columns: repeat(2, minmax(0, 1fr));
