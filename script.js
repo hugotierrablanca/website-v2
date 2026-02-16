@@ -297,7 +297,7 @@
     }
 
     const navBottom = nav.getBoundingClientRect().bottom;
-    statusWrap.style.top = `${Math.round(navBottom + 2)}px`;
+    statusWrap.style.top = `${Math.round(navBottom + 10)}px`;
   }
 
   async function fetchJson(url) {
