@@ -433,7 +433,7 @@ section h2::before {
 #research-section {
   position: relative;
   z-index: 8;
-  margin-top: 2.2rem;
+  margin-top: 2.6rem;
 }
 
 #pubs {
@@ -930,7 +930,7 @@ section h2::before {
 .ri-tabs {
   display: flex;
   border-bottom: 1.5px solid var(--gray);
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   position: relative;
 }
 
