@@ -358,8 +358,8 @@ section h2::before {
 #year-range-max::-webkit-slider-thumb {
   -webkit-appearance: none;
   pointer-events: auto;
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   margin-top: -1px;
   border-radius: 50%;
   border: none;
@@ -379,8 +379,8 @@ section h2::before {
 #year-range-min::-moz-range-thumb,
 #year-range-max::-moz-range-thumb {
   pointer-events: auto;
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   border: none;
   background:
@@ -438,7 +438,7 @@ section h2::before {
 
 #pubs {
   margin-top: 1rem;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .pub-contain {
@@ -462,6 +462,7 @@ section h2::before {
 .pub:hover {
   transform: scale(1.02);
   box-shadow: 0 0 25px rgba(30, 86, 153, 0.16);
+  z-index: 2;
 }
 
 .pub .top-section {
