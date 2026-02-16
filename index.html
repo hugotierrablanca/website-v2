@@ -90,7 +90,7 @@
 
       <section id="research-section" class="fade-in delay-1">
         <div class="anchor" id="research"></div>
-        <h2>Research Highlights ✨</h2>
+        <h2>Research Highlights</h2>
 
         <p>
           I develop methods and tooling to make AI systems more <span class="accent emphasis">trustworthy</span>
@@ -104,8 +104,8 @@
           <div id="slider-contain">
             <b>Filter by year:</b>
             <span id="year-min">2023</span>
-            <input id="year-range" type="range" min="2023" max="2025" step="1" value="2023" />
-            <span>2025</span>
+            <input id="year-range" type="range" min="2023" max="2026" step="1" value="2023" />
+            <span>2026</span>
           </div>
 
           <div id="tag-contain">
@@ -113,8 +113,8 @@
             <select id="tag-select" aria-label="Filter publications by tag">
               <option value="all">select tag</option>
               <option value="ai safety">ai safety</option>
-              <option value="machine learning">machine learning</option>
-              <option value="neuroscience">neuroscience</option>
+              <option value="evals">evals</option>
+              <option value="mech interp">mech interp</option>
             </select>
           </div>
         </div>
@@ -125,7 +125,7 @@
 
         <div id="pubs">
           <div class="pub-contain">
-            <article class="pub" data-year="2025" data-tags="ai safety,machine learning">
+            <article class="pub" data-year="2025" data-tags="evals,ai safety">
               <div class="top-section">
                 <div class="pub-thumb placeholder"></div>
               </div>
@@ -133,12 +133,14 @@
               <div class="pub-inner">
                 <div>
                   <h3>Theoretical Error Bounds for LLM-Imputed Labels in Selective Labels Problems</h3>
-                  <p class="author">Hugo Tierrablanca, Martin Pawelczyk, Himabindu Lakkaraju</p>
-                  <p class="venue">In Preparation, 2025</p>
-                  <p class="tags">
-                    <span class="tag">ai safety</span>
-                    <span class="tag tag2">machine learning</span>
-                  </p>
+                  <p class="author"><span class="author-highlight">Hugo Tierrablanca</span>, Martin Pawelczyk, Himabindu Lakkaraju</p>
+                  <div class="pub-meta-row">
+                    <p class="venue">In Preparation, 2025</p>
+                    <p class="card-tags" aria-label="Project categories">
+                      <span class="card-tag">Evals</span>
+                      <span class="card-tag">AI Safety</span>
+                    </p>
+                  </div>
                   <p class="summary">
                     Developing PAC labeling frameworks and contraction arguments to bound evaluation
                     errors when using LLM-generated labels in selective-label settings.
@@ -152,7 +154,7 @@
               </div>
             </article>
 
-            <article class="pub" data-year="2023" data-tags="neuroscience,machine learning">
+            <article class="pub" data-year="2023" data-tags="mech interp">
               <div class="top-section">
                 <div class="pub-thumb placeholder"></div>
               </div>
@@ -161,11 +163,12 @@
                 <div>
                   <h3>Computational Analysis of Neural Organoid Activity</h3>
                   <p class="author">Arlotta Lab, Harvard University</p>
-                  <p class="venue">Summer Research Experience, 2023</p>
-                  <p class="tags">
-                    <span class="tag tag3">neuroscience</span>
-                    <span class="tag tag2">machine learning</span>
-                  </p>
+                  <div class="pub-meta-row">
+                    <p class="venue">Summer Research Experience, 2023</p>
+                    <p class="card-tags" aria-label="Project categories">
+                      <span class="card-tag">Mech Interp</span>
+                    </p>
+                  </div>
                   <p class="summary">
                     Analyzed and modeled electrophysiological data from human brain organoids to
                     investigate neural behavior and possible brain-machine interface directions.
@@ -178,23 +181,33 @@
               </div>
             </article>
 
-            <article class="pub" data-year="2025" data-tags="ai safety,machine learning">
+            <article class="pub" data-year="2026" data-tags="mech interp,ai safety">
               <div class="top-section">
                 <div class="pub-thumb placeholder"></div>
               </div>
 
               <div class="pub-inner">
                 <div>
-                  <h3>Placeholder Project Title</h3>
-                  <p class="author"> </p>
-                  <p class="venue"> </p>
-                  <p class="tags">
-                    <span class="tag">ai safety</span>
+                  <h3>Unified Attribution: Bridging Mechanistic Interpretability and Data Influence for In-Context Learning</h3>
+                  <p class="author">Shichang Zhang, <span class="author-highlight">Hugo Tierrablanca</span>, Himabindu Lakkaraju</p>
+                  <div class="pub-meta-row">
+                    <p class="venue">In Progress, 2026</p>
+                    <p class="card-tags" aria-label="Project categories">
+                      <span class="card-tag">Mech Interp</span>
+                      <span class="card-tag">AI Safety</span>
+                    </p>
+                  </div>
+                  <p class="summary">
+                    We design a unified framework that connects model behaviors to their origins by
+                    bridging mechanistic interpretability and data attribution. Our approach traces
+                    specific model outputs back to the joint effects of pre-training data, internal
+                    model components, and in-context information (RAG), aiming to disentangle
+                    parametric knowledge from retrieval-based context.
                   </p>
-                  <p class="summary"> </p>
                 </div>
                 <p class="links">
                   <span class="link disabled" aria-disabled="true">paper</span>
+                  <span class="link disabled" aria-disabled="true">project</span>
                 </p>
               </div>
             </article>
