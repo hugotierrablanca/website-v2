@@ -710,6 +710,8 @@ body.dark-mode #research-section .pub .link.disabled {
 .pub-thumb {
   width: 100%;
   height: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .placeholder {
